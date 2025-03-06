@@ -1,7 +1,13 @@
 
-import React from "react";
+import React, { useState } from "react";
 
 const WeeklyQuestion: React.FC = () => {
+  const [voted, setVoted] = useState<'up' | 'down' | null>(null);
+
+  const handleVote = (voteType: 'up' | 'down') => {
+    setVoted(voted === voteType ? null : voteType);
+  };
+
   return (
     <div className="w-full pt-[15px] rounded-[0px_0px_0px_0px]">
       <div className="bg-[rgba(78,172,229,1)] flex flex-col items-stretch justify-center px-[5px] py-[3px] rounded-[5px]">
@@ -22,9 +28,10 @@ const WeeklyQuestion: React.FC = () => {
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/3adcad42f4e024be9277137ce539b69cebb8c78e1633ee1408d7203867fde929?placeholderIfAbsent=true"
                   alt="Upvote"
-                  className="aspect-[1] object-contain w-3 self-stretch shrink-0 my-auto"
+                  className={`aspect-[1] object-contain w-3 self-stretch shrink-0 my-auto cursor-pointer ${voted === 'up' ? 'filter brightness-0 saturate-100 invert-[22%] sepia-[99%] saturate-[7451%] hue-rotate-[93deg] brightness-[96%] contrast-[110%]' : ''}`}
+                  onClick={() => handleVote('up')}
                 />
-                <div className="self-stretch my-auto">58</div>
+                <div className={`self-stretch my-auto ${voted === 'up' ? 'text-green-500' : ''}`}>58</div>
               </div>
               <div className="self-stretch flex items-center gap-[3px] my-auto">
                 <img

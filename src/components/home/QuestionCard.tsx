@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 
 interface QuestionCardProps {
   title: string;
@@ -16,7 +16,6 @@ interface QuestionCardProps {
   bookmarkImage: string;
   upvoteImage: string;
   downvoteImage: string;
-  backgroundColor?: string;
   titleColor?: string;
   categoryType?: 'freizeit' | 'verkehr' | 'politik' | 'wohnen';
 }
@@ -26,7 +25,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
   category,
   categoryColor,
   question,
-  votes,
+  votes: initialVotes,
   hasExpertAnswer,
   answerCount,
   viewCount,
@@ -36,10 +35,13 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
   bookmarkImage,
   upvoteImage,
   downvoteImage,
-  backgroundColor,
   titleColor,
   categoryType = 'freizeit',
 }) => {
+  const [votes, setVotes] = useState(initialVotes);
+  const [voted, setVoted] = useState<'up' | 'down' | null>(null);
+  const [bookmarked, setBookmarked] = useState(false);
+
   // Get background and title color based on category type
   const bgClass = `bg-${categoryType}`;
   
@@ -52,11 +54,26 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
   };
   
   const actualTitleColor = titleColor || titleColorMap[categoryType];
+
+  const handleVote = (voteType: 'up' | 'down') => {
+    if (voted === voteType) {
+      // Unvote
+      setVoted(null);
+      setVotes(initialVotes);
+    } else if (voted === null) {
+      // New vote
+      setVoted(voteType);
+      setVotes(voteType === 'up' ? initialVotes + 1 : initialVotes - 1);
+    } else {
+      // Change vote direction
+      setVoted(voteType);
+      setVotes(voteType === 'up' ? initialVotes + 2 : initialVotes - 2);
+    }
+  };
   
   return (
     <div
       className={`flex w-full flex-col overflow-hidden items-stretch justify-center px-3 py-[30px] rounded-[10px] ${bgClass} transition-transform duration-300 hover:scale-[1.01] cursor-pointer`}
-      style={backgroundColor ? { background: backgroundColor } : {}}
     >
       <div className="w-full">
         <div className="flex w-full flex-col items-stretch">
@@ -68,11 +85,12 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
             <img
               src={bookmarkImage}
               alt="Bookmark"
-              className="aspect-[1] object-contain w-5 shrink-0 hover:opacity-80 transition-opacity"
+              className={`aspect-[1] object-contain w-5 shrink-0 hover:opacity-80 transition-opacity ${bookmarked ? 'filter brightness-0 saturate-100 invert-[22%] sepia-[99%] saturate-[7451%] hue-rotate-[93deg] brightness-[96%] contrast-[110%]' : ''}`}
+              onClick={() => setBookmarked(!bookmarked)}
             />
           </div>
           <div
-            className={`category-${categoryType} gap-2.5 text-sm text-[#F6F6F6] font-normal whitespace-nowrap leading-none mt-3 px-[15px] py-[9px] rounded-sm`}
+            className={`category-${categoryType} inline-block text-sm text-[#F6F6F6] font-normal whitespace-nowrap leading-none mt-3 px-[15px] py-[9px] rounded-sm`}
             style={{ backgroundColor: categoryColor }}
           >
             {category}
@@ -88,16 +106,18 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
                 <img
                   src={upvoteImage}
                   alt="Upvote"
-                  className="aspect-[0.87] object-contain w-full hover:opacity-80 transition-opacity cursor-pointer"
+                  className={`aspect-[0.87] object-contain w-full hover:opacity-80 transition-opacity cursor-pointer ${voted === 'up' ? 'filter brightness-0 saturate-100 invert-[22%] sepia-[99%] saturate-[7451%] hue-rotate-[93deg] brightness-[96%] contrast-[110%]' : ''}`}
+                  onClick={() => handleVote('up')}
                 />
-                <div className="mt-1.5">{votes}</div>
+                <div className={`mt-1.5 ${voted === 'up' ? 'text-green-500' : (voted === 'down' ? 'text-red-500' : '')}`}>{votes}</div>
               </div>
               <div className="border min-h-px w-3 mt-[9px] border-[rgba(57,57,57,1)] border-solid" />
               <div className="flex w-5 items-center gap-0.5 justify-center mt-[9px]">
                 <img
                   src={downvoteImage}
                   alt="Downvote"
-                  className="aspect-[0.87] object-contain w-5 self-stretch my-auto hover:opacity-80 transition-opacity cursor-pointer"
+                  className={`aspect-[0.87] object-contain w-5 self-stretch my-auto hover:opacity-80 transition-opacity cursor-pointer ${voted === 'down' ? 'filter brightness-0 saturate-100 invert-[15%] sepia-[96%] saturate-[7499%] hue-rotate-[350deg] brightness-[103%] contrast-[104%]' : ''}`}
+                  onClick={() => handleVote('down')}
                 />
               </div>
             </div>
