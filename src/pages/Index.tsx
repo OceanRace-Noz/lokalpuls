@@ -11,7 +11,7 @@ import Divider from "@/components/ui/Divider";
 
 const Index: React.FC = () => {
   return (
-    <main className="bg-[rgba(242,242,242,1)] flex max-w-[480px] w-full flex-col items-stretch mx-auto pb-[15px] px-1.5">
+    <main className="bg-[rgba(242,242,242,1)] flex max-w-[480px] w-full flex-col items-stretch mx-auto pb-[15px] px-1.5 font-dongle">
       <div className="bg-[rgba(44,44,44,1)] flex shrink-0 h-[167px]" />
       <div className="z-10 flex mt-[-167px] flex-col items-center">
         <div className="items-stretch self-stretch bg-[#2C2C2C] flex w-full flex-col pb-2.5">
@@ -34,14 +34,14 @@ const Index: React.FC = () => {
 
         <div className="flex w-full max-w-[359px] flex-col items-stretch mt-[46px]">
           <div className="flex items-center gap-1.5">
-            <button className="items-center shadow-[0px_1px_2px_0px_rgba(0,0,0,0.30),0px_1px_3px_1px_rgba(0,0,0,0.15)] bg-[#F6F6F6] self-stretch flex gap-2.5 w-[30px] h-[30px] my-auto p-[5px] rounded-[3px]">
+            <button className="items-center shadow-[0px_1px_2px_0px_rgba(0,0,0,0.30),0px_1px_3px_1px_rgba(0,0,0,0.15)] bg-[#F6F6F6] self-stretch flex gap-2.5 w-[30px] h-[30px] my-auto p-[5px] rounded-[3px] hover:bg-[#E8E8E8] active:scale-95 transition-all">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/960e1638245b5ae3ed20073cc229a9cf88687c57a47e9387385739758545fa36?placeholderIfAbsent=true"
                 alt="Filter"
                 className="aspect-[1] object-contain w-5 self-stretch my-auto"
               />
             </button>
-            <button className="items-center shadow-[0px_1px_2px_0px_rgba(0,0,0,0.30),0px_1px_3px_1px_rgba(0,0,0,0.15)] bg-[#F6F6F6] self-stretch flex gap-2.5 w-[30px] h-[30px] my-auto p-[5px] rounded-[3px]">
+            <button className="items-center shadow-[0px_1px_2px_0px_rgba(0,0,0,0.30),0px_1px_3px_1px_rgba(0,0,0,0.15)] bg-[#F6F6F6] self-stretch flex gap-2.5 w-[30px] h-[30px] my-auto p-[5px] rounded-[3px] hover:bg-[#E8E8E8] active:scale-95 transition-all">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/f1e0e4832b879efc84310189889d1f508592804e70b32edc175f4f430b5b973e?placeholderIfAbsent=true"
                 alt="Sort"
@@ -66,8 +66,8 @@ const Index: React.FC = () => {
               bookmarkImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/c05aa67bb6643d7acc1eec5e46ab5454e023473c74883fabd77c191e4f18d75b?placeholderIfAbsent=true"
               upvoteImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/abfee50c7c9e9eeaaf19cd42a97a348f28b3256c4548514adc5a8f037e84e54f?placeholderIfAbsent=true"
               downvoteImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/38b85c60b105f61c3ed302f9b6a214689a5a2cdf39b1381f37f39f9dcd6c19ad?placeholderIfAbsent=true"
-              backgroundColor="linear-gradient(180deg,#040C29_0%,#08164C_100%)"
               titleColor="#9EB3FF"
+              categoryType="freizeit"
             />
 
             <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/484ca79a89bcb7bc652da7fccb68a544bf52aad5c7d239c975b4dd674854a32b?placeholderIfAbsent=true" />
@@ -88,6 +88,7 @@ const Index: React.FC = () => {
               upvoteImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/ee96c7b4d1b0d2826a5affe51b6e8f1eaf627aae9824e0edd35034e40f8ca8d9?placeholderIfAbsent=true"
               downvoteImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/480695f1aaf15e2feec019fb68a3d6b0c109fa96194b27d9a11d6bfb05ea5082?placeholderIfAbsent=true"
               titleColor="#CDE8D0"
+              categoryType="verkehr"
             />
 
             <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/484ca79a89bcb7bc652da7fccb68a544bf52aad5c7d239c975b4dd674854a32b?placeholderIfAbsent=true" />
@@ -108,6 +109,7 @@ const Index: React.FC = () => {
               upvoteImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/ee96c7b4d1b0d2826a5affe51b6e8f1eaf627aae9824e0edd35034e40f8ca8d9?placeholderIfAbsent=true"
               downvoteImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/dec21c5d526a4e5c31781f71d4972e29e7d7e778c70ed2ff3e01968219b22c35?placeholderIfAbsent=true"
               titleColor="#EACAE0"
+              categoryType="politik"
             />
 
             <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/484ca79a89bcb7bc652da7fccb68a544bf52aad5c7d239c975b4dd674854a32b?placeholderIfAbsent=true" />
@@ -132,6 +134,7 @@ const Index: React.FC = () => {
               upvoteImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/b01a29d0b9c46b70b12fcf5ef2b78606bb46e80fddd38b180089e92322131891?placeholderIfAbsent=true"
               downvoteImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/70ec92c8d054ac7aaaf7d928be327a094fdfcc80e70e9bca56e93265fbc1b9c3?placeholderIfAbsent=true"
               titleColor="#DBDBDB"
+              categoryType="wohnen"
             />
 
             <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/11f66f0a860665edab25c3f9d7c135a2f6e51c4256dfda7817eb95fded088445?placeholderIfAbsent=true" />

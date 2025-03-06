@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -96,6 +97,40 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-dongle;
+  }
+
+  /* Question category colors */
+  .category-freizeit {
+    @apply bg-[#1F45CD];
+  }
+  
+  .category-verkehr {
+    @apply bg-[#0A9D2F];
+  }
+  
+  .category-politik {
+    @apply bg-[#D12C9B];
+  }
+  
+  .category-wohnen {
+    @apply bg-[#E5924E];
+  }
+
+  /* Question box backgrounds */
+  .bg-freizeit {
+    background: linear-gradient(180deg, #040C29 0%, #08164C 100%);
+  }
+  
+  .bg-verkehr {
+    background: linear-gradient(180deg, #042904 0%, #084C11 100%);
+  }
+  
+  .bg-politik {
+    background: linear-gradient(180deg, #29041E 0%, #5F1348 100%);
+  }
+  
+  .bg-wohnen {
+    background: linear-gradient(180deg, #292504 0%, #483704 100%);
   }
 }

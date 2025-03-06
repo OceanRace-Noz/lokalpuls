@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 
 type Topic = {
@@ -19,7 +20,7 @@ const topics: Topic[] = [
   {
     id: "2",
     number: "#2",
-    title: '"Neues Hofcaf�� in Melle"',
+    title: '"Neues Hofcafé in Melle"',
     color: "#F1AB7B",
     icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/a3bfcb4976dad092ebe9d540a213336e8801e36d0684f66cc6e10526533f4e34?placeholderIfAbsent=true",
   },
@@ -55,7 +56,7 @@ const TopicsList: React.FC = () => {
   return (
     <div className="self-center flex w-[335px] max-w-full flex-col items-stretch mt-[17px]">
       <div className="w-full">
-        <div className="text-[rgba(219,219,219,1)] text-base font-medium">
+        <div className="text-[rgba(219,219,219,1)] text-base font-medium font-league-spartan">
           Das beschäftigt Melle
         </div>
         <div className="bg-[rgba(50,50,50,1)] flex w-full items-center gap-[7px] text-sm text-[rgba(83,83,83,1)] font-normal leading-none justify-between mt-[19px]">
@@ -73,7 +74,7 @@ const TopicsList: React.FC = () => {
                 selectedFilter === option
                   ? "bg-[rgba(65,125,181,1)] text-[rgba(244,244,244,1)] font-bold"
                   : "bg-[rgba(219,219,219,1)]"
-              } gap-2.5 whitespace-nowrap my-auto px-2.5 py-2 rounded-[5px]`}
+              } gap-2.5 whitespace-nowrap my-auto px-2.5 py-2 rounded-[5px] font-league-spartan transition-all duration-300 hover:opacity-90 active:scale-95`}
               onClick={() => setSelectedFilter(option)}
             >
               {option}
@@ -85,15 +86,17 @@ const TopicsList: React.FC = () => {
         <div className="w-full">
           {topics.map((topic, index) => (
             <React.Fragment key={topic.id}>
-              <div className="flex min-h-[18px] w-full items-center gap-[40px_100px] justify-between">
+              <div className="flex min-h-[18px] w-full items-center gap-[40px_100px] justify-between hover:opacity-80 transition-opacity cursor-pointer">
                 <div className="self-stretch flex items-center gap-[5px] my-auto">
                   <div
-                    className={`text-[${topic.color}] text-base self-stretch my-auto`}
+                    style={{ color: topic.color }}
+                    className="text-base self-stretch my-auto"
                   >
                     {topic.number}
                   </div>
                   <div
-                    className={`text-[${topic.color}] text-2xl self-stretch my-auto`}
+                    style={{ color: topic.color }}
+                    className="text-2xl self-stretch my-auto"
                   >
                     {topic.title}
                   </div>
@@ -113,7 +116,7 @@ const TopicsList: React.FC = () => {
             </React.Fragment>
           ))}
         </div>
-        <div className="text-[rgba(219,219,219,1)] text-lg text-center mt-[5px] cursor-pointer hover:underline">
+        <div className="text-[rgba(219,219,219,1)] text-lg text-center mt-[5px] cursor-pointer hover:underline transition-all duration-200">
           Alle ansehen
         </div>
       </div>

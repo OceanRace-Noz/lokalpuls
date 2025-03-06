@@ -18,6 +18,7 @@ interface QuestionCardProps {
   downvoteImage: string;
   backgroundColor?: string;
   titleColor?: string;
+  categoryType?: 'freizeit' | 'verkehr' | 'politik' | 'wohnen';
 }
 
 const QuestionCard: React.FC<QuestionCardProps> = ({
@@ -35,29 +36,43 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
   bookmarkImage,
   upvoteImage,
   downvoteImage,
-  backgroundColor = "linear-gradient(180deg,#040C29_0%,#08164C_100%)",
-  titleColor = "#9EB3FF",
+  backgroundColor,
+  titleColor,
+  categoryType = 'freizeit',
 }) => {
+  // Get background and title color based on category type
+  const bgClass = `bg-${categoryType}`;
+  
+  // Title color mapping
+  const titleColorMap = {
+    'freizeit': '#9EB3FF',
+    'verkehr': '#CDE8D0',
+    'politik': '#EACAE0',
+    'wohnen': '#DBDBDB',
+  };
+  
+  const actualTitleColor = titleColor || titleColorMap[categoryType];
+  
   return (
     <div
-      className="flex w-full flex-col overflow-hidden items-stretch justify-center px-3 py-[30px] rounded-[10px]"
-      style={{ background: backgroundColor }}
+      className={`flex w-full flex-col overflow-hidden items-stretch justify-center px-3 py-[30px] rounded-[10px] ${bgClass} transition-transform duration-300 hover:scale-[1.01] cursor-pointer`}
+      style={backgroundColor ? { background: backgroundColor } : {}}
     >
       <div className="w-full">
         <div className="flex w-full flex-col items-stretch">
           <div
-            className="flex w-full items-stretch text-xl font-semibold leading-none justify-between"
-            style={{ color: titleColor }}
+            className="flex w-full items-stretch text-xl font-semibold leading-[20px] justify-between font-league-spartan"
+            style={{ color: actualTitleColor }}
           >
             <div className="flex-1 shrink basis-[0%]">{title}</div>
             <img
               src={bookmarkImage}
               alt="Bookmark"
-              className="aspect-[1] object-contain w-5 shrink-0"
+              className="aspect-[1] object-contain w-5 shrink-0 hover:opacity-80 transition-opacity"
             />
           </div>
           <div
-            className="gap-2.5 text-sm text-[#F6F6F6] font-normal whitespace-nowrap leading-none mt-3 px-[15px] py-[9px] rounded-sm"
+            className={`category-${categoryType} gap-2.5 text-sm text-[#F6F6F6] font-normal whitespace-nowrap leading-none mt-3 px-[15px] py-[9px] rounded-sm`}
             style={{ backgroundColor: categoryColor }}
           >
             {category}
@@ -73,7 +88,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
                 <img
                   src={upvoteImage}
                   alt="Upvote"
-                  className="aspect-[0.87] object-contain w-full"
+                  className="aspect-[0.87] object-contain w-full hover:opacity-80 transition-opacity cursor-pointer"
                 />
                 <div className="mt-1.5">{votes}</div>
               </div>
@@ -82,7 +97,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
                 <img
                   src={downvoteImage}
                   alt="Downvote"
-                  className="aspect-[0.87] object-contain w-5 self-stretch my-auto"
+                  className="aspect-[0.87] object-contain w-5 self-stretch my-auto hover:opacity-80 transition-opacity cursor-pointer"
                 />
               </div>
             </div>
@@ -107,7 +122,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
               </div>
             </div>
             <div className="flex items-center gap-2.5 text-base text-[#C8C8C8] mt-[15px]">
-              <div className="self-stretch flex items-center gap-1 font-bold my-auto">
+              <div className="self-stretch flex items-center gap-1 font-bold my-auto hover:underline cursor-pointer">
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/5c6c02e022f8e3fe38862aa3c1a33582fb29feabe5c1020862f95f8d8cce4d29?placeholderIfAbsent=true"
                   alt="Answers"
@@ -131,14 +146,14 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
           <div className="relative flex gap-2 text-xs text-[rgba(57,57,57,1)] font-normal text-right leading-loose">
             <div className="self-stretch flex-1 shrink basis-[0%] z-0 gap-2.5 w-[67px] pb-1">
               <span className="text-[rgba(200,200,200,1)]">von</span>{" "}
-              <span className="font-bold text-[rgba(113,183,206,1)]">
+              <span className="font-bold text-[rgba(113,183,206,1)] hover:underline cursor-pointer">
                 {userName}
               </span>
             </div>
             <img
               src={userImage}
               alt="User"
-              className="aspect-[1] object-contain w-10 z-0 shrink-0 rounded-[50%]"
+              className="aspect-[1] object-contain w-10 z-0 shrink-0 rounded-[50%] hover:opacity-90 transition-opacity cursor-pointer"
             />
             <img
               src={userStatusImage}

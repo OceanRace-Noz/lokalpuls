@@ -1,3 +1,4 @@
+
 import React from "react";
 
 const Header: React.FC = () => {
@@ -15,7 +16,7 @@ const Header: React.FC = () => {
                 alt="LocalPuls Logo"
                 className="aspect-[1] object-contain w-10 shrink-0 rounded-[10px]"
               />
-              <div className="mt-5">LocalPuls</div>
+              <div className="mt-5 font-league-spartan">LocalPuls</div>
             </div>
             <div className="self-stretch relative flex items-center gap-2.5 my-auto">
               <img
@@ -38,7 +39,7 @@ const Header: React.FC = () => {
         </div>
       </div>
       <div className="justify-center items-stretch bg-[#2C2C2C] flex min-h-16 w-full flex-col overflow-hidden text-base px-5 py-3.5">
-        <div className="text-[rgba(232,232,232,1)] font-medium">
+        <div className="text-[rgba(232,232,232,1)] font-medium font-league-spartan">
           Guten Morgen, <span className="font-bold">Stefan!</span>
         </div>
         <div className="flex items-center gap-0.5 text-[rgba(78,172,229,1)] font-bold whitespace-nowrap underline mt-2.5">
@@ -47,7 +48,7 @@ const Header: React.FC = () => {
             alt="Location"
             className="aspect-[1] object-contain w-4 self-stretch shrink-0 my-auto"
           />
-          <div className="self-stretch flex items-center gap-px my-auto">
+          <div className="self-stretch flex items-center gap-px my-auto font-league-spartan">
             <div className="self-stretch my-auto">Melle</div>
             <img
               src="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/451932fcf0ca91185692e62932f8b1e82ee0647b1ea7838a8722d5ad8711b419?placeholderIfAbsent=true"
