@@ -1,3 +1,4 @@
+
 import React from "react";
 
 const WeeklyQuestion: React.FC = () => {
@@ -8,7 +9,7 @@ const WeeklyQuestion: React.FC = () => {
           <div className="text-[rgba(78,172,229,1)] text-sm font-medium">
             Frage der Woche
           </div>
-          <div className="text-[#393939] text-2xl font-normal leading-none mt-5">
+          <div className="text-[#393939] text-2xl font-normal leading-tight mt-5">
             "Welche Veranstaltungen sollte man in Melle im Herbst auf keinen
             Fall verpassen?"
           </div>

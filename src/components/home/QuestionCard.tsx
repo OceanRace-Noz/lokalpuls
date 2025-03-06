@@ -1,3 +1,4 @@
+
 import React from "react";
 
 interface QuestionCardProps {
@@ -63,7 +64,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
           </div>
         </div>
         <div className="flex w-full items-center justify-between mt-[30px]">
-          <div className="text-[#C8C8C8] text-2xl font-normal leading-5 self-stretch flex-1 shrink basis-[0%] my-auto">
+          <div className="text-[#C8C8C8] text-2xl font-normal leading-tight self-stretch flex-1 shrink basis-[0%] my-auto">
             {question}
           </div>
           <div className="self-stretch flex items-center gap-2.5 w-[30px] my-auto pl-2.5">
@@ -77,7 +78,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
                 <div className="mt-1.5">{votes}</div>
               </div>
               <div className="border min-h-px w-3 mt-[9px] border-[rgba(57,57,57,1)] border-solid" />
-              <div className="rotate-[-3.141592653589793rad] flex w-5 items-center gap-0.5 justify-center mt-[9px]">
+              <div className="flex w-5 items-center gap-0.5 justify-center mt-[9px]">
                 <img
                   src={downvoteImage}
                   alt="Downvote"

@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 
 const AskQuestionForm: React.FC = () => {
@@ -45,7 +46,7 @@ const AskQuestionForm: React.FC = () => {
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             placeholder="Deine Frage hier eingeben..."
-            className="text-2xl bg-transparent outline-none w-full resize-none h-24"
+            className="text-2xl bg-transparent outline-none w-full resize-none h-24 leading-tight"
             maxLength={360}
           />
           <div className="flex items-stretch gap-5 text-[15px] whitespace-nowrap text-right justify-between mt-11">
