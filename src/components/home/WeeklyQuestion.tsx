@@ -3,19 +3,32 @@ import React, { useState } from "react";
 
 const WeeklyQuestion: React.FC = () => {
   const [voted, setVoted] = useState<'up' | 'down' | null>(null);
+  const [votes, setVotes] = useState<number>(58);
 
   const handleVote = (voteType: 'up' | 'down') => {
-    setVoted(voted === voteType ? null : voteType);
+    if (voted === voteType) {
+      // Unvote
+      setVoted(null);
+      setVotes(58);
+    } else if (voted === null) {
+      // New vote
+      setVoted(voteType);
+      setVotes(voteType === 'up' ? 59 : 57);
+    } else {
+      // Change vote direction
+      setVoted(voteType);
+      setVotes(voteType === 'up' ? 59 : 57);
+    }
   };
 
   return (
     <div className="w-full pt-[15px] rounded-[0px_0px_0px_0px]">
       <div className="bg-[rgba(78,172,229,1)] flex flex-col items-stretch justify-center px-[5px] py-[3px] rounded-[5px]">
         <div className="bg-[rgba(224,235,242,1)] z-10 flex mt-[-5px] w-full flex-col items-stretch pt-4 pb-2.5 px-4 rounded-[5px] transition-transform duration-300 hover:scale-[1.01] cursor-pointer">
-          <div className="text-[rgba(78,172,229,1)] text-sm font-medium">
+          <div className="text-[rgba(78,172,229,1)] text-sm font-medium font-league-spartan">
             Frage der Woche
           </div>
-          <div className="text-[#393939] text-2xl font-normal leading-tight mt-5">
+          <div className="text-[#393939] text-2xl font-normal leading-tight mt-5 font-dongle">
             "Welche Veranstaltungen sollte man in Melle im Herbst auf keinen
             Fall verpassen?"
           </div>
@@ -31,7 +44,7 @@ const WeeklyQuestion: React.FC = () => {
                   className={`aspect-[1] object-contain w-3 self-stretch shrink-0 my-auto cursor-pointer ${voted === 'up' ? 'filter brightness-0 saturate-100 invert-[22%] sepia-[99%] saturate-[7451%] hue-rotate-[93deg] brightness-[96%] contrast-[110%]' : ''}`}
                   onClick={() => handleVote('up')}
                 />
-                <div className={`self-stretch my-auto ${voted === 'up' ? 'text-green-500' : ''}`}>58</div>
+                <div className={`self-stretch my-auto ${voted === 'up' ? 'text-green-500' : (voted === 'down' ? 'text-red-500' : '')}`}>{votes}</div>
               </div>
               <div className="self-stretch flex items-center gap-[3px] my-auto">
                 <img

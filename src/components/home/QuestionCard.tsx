@@ -42,8 +42,13 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
   const [voted, setVoted] = useState<'up' | 'down' | null>(null);
   const [bookmarked, setBookmarked] = useState(false);
 
-  // Get background and title color based on category type
-  const bgClass = `bg-${categoryType}`;
+  // Background styles based on category type
+  const bgStyles = {
+    freizeit: "linear-gradient(180deg, #040C29 0%, #08164C 100%)",
+    verkehr: "linear-gradient(180deg, #042904 0%, #084C11 100%)",
+    politik: "linear-gradient(180deg, #29041E 0%, #5F1348 100%)",
+    wohnen: "linear-gradient(180deg, #292504 0%, #483704 100%)",
+  };
   
   // Title color mapping
   const titleColorMap = {
@@ -73,7 +78,8 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
   
   return (
     <div
-      className={`flex w-full flex-col overflow-hidden items-stretch justify-center px-3 py-[30px] rounded-[10px] ${bgClass} transition-transform duration-300 hover:scale-[1.01] cursor-pointer`}
+      className="flex w-full flex-col overflow-hidden items-stretch justify-center px-3 py-[30px] rounded-[10px] transition-transform duration-300 hover:scale-[1.01] cursor-pointer"
+      style={{ background: bgStyles[categoryType] }}
     >
       <div className="w-full">
         <div className="flex w-full flex-col items-stretch">
@@ -90,7 +96,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
             />
           </div>
           <div
-            className={`category-${categoryType} inline-block text-sm text-[#F6F6F6] font-normal whitespace-nowrap leading-none mt-3 px-[15px] py-[9px] rounded-sm`}
+            className="inline-block text-sm text-[#F6F6F6] font-normal whitespace-nowrap leading-none mt-3 px-[15px] py-[9px] rounded-sm w-auto"
             style={{ backgroundColor: categoryColor }}
           >
             {category}
