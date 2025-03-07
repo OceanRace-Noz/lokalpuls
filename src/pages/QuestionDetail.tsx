@@ -75,6 +75,7 @@ const QuestionDetail: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [voteStatus, setVoteStatus] = useState<'up' | 'down' | null>(null);
   const [voteCount, setVoteCount] = useState<number>(0);
+  const [answerText, setAnswerText] = useState<string>('');
 
   useEffect(() => {
     // Simulate data loading
@@ -102,6 +103,15 @@ const QuestionDetail: React.FC = () => {
       // Change vote direction
       setVoteStatus(type);
       setVoteCount(type === 'up' ? question.votes + 2 : question.votes - 2);
+    }
+  };
+
+  const handleAnswerSubmit = () => {
+    if (answerText.trim()) {
+      // In a real app, you would send this to the server
+      console.log("Submitting answer:", answerText);
+      setAnswerText('');
+      // Optionally show a success toast here
     }
   };
 
@@ -150,9 +160,9 @@ const QuestionDetail: React.FC = () => {
         
         <div className="w-full max-w-[359px] mt-4">
           <div className="flex items-center mb-4">
-            <Link to="/" className="flex items-center text-[#4EACE5] hover:underline">
-              <ArrowLeft size={16} className="mr-1" />
-              Zurück
+            <Link to="/" className="flex items-center text-[#4EACE5] font-medium hover:underline transition-colors">
+              <ArrowLeft size={18} className="mr-1" />
+              <span>Zurück</span>
             </Link>
           </div>
           
@@ -163,11 +173,11 @@ const QuestionDetail: React.FC = () => {
               </div>
             </div>
             
-            <h1 className="text-3xl font-medium text-white mb-2">{question.title}</h1>
+            <h1 className="text-3xl font-medium text-white mb-2 leading-tight">{question.title}</h1>
             
             <p className="text-white/90 text-lg mb-4 leading-snug">{question.question}</p>
             
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex justify-between items-center mb-2">
               <div className="flex items-center">
                 <div className="w-8 h-8 rounded-full bg-gray-300 mr-2 overflow-hidden">
                   <img 
@@ -208,6 +218,23 @@ const QuestionDetail: React.FC = () => {
           </div>
           
           <div className="mt-6">
+            {/* "Deine Antwort" section moved above the answers list */}
+            <div className="bg-white p-4 rounded-lg shadow mb-6">
+              <h3 className="text-xl mb-2 font-medium">Deine Antwort</h3>
+              <textarea
+                className="w-full border border-gray-300 rounded p-2 min-h-[100px] text-lg"
+                placeholder="Deine Antwort hier eingeben..."
+                value={answerText}
+                onChange={(e) => setAnswerText(e.target.value)}
+              />
+              <button 
+                className="mt-2 bg-[#1A85C6] text-white px-4 py-2 rounded hover:bg-[#1476B0] transition-colors"
+                onClick={handleAnswerSubmit}
+              >
+                Antwort senden
+              </button>
+            </div>
+            
             <h2 className="text-2xl font-medium mb-4">Antworten ({question.answerCount})</h2>
             
             {question.answers.map((answer: any, index: number) => (
@@ -227,17 +254,6 @@ const QuestionDetail: React.FC = () => {
                 </div>
               </div>
             ))}
-            
-            <div className="mt-4 bg-white p-4 rounded-lg shadow">
-              <h3 className="text-xl mb-2">Deine Antwort</h3>
-              <textarea
-                className="w-full border border-gray-300 rounded p-2 min-h-[100px] text-lg"
-                placeholder="Deine Antwort hier eingeben..."
-              />
-              <button className="mt-2 bg-[#1A85C6] text-white px-4 py-2 rounded hover:bg-[#1476B0] transition-colors">
-                Antwort senden
-              </button>
-            </div>
           </div>
         </div>
       </div>
