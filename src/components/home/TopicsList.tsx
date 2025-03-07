@@ -1,17 +1,9 @@
 
 import React, { useState } from "react";
 import { toast } from "@/components/ui/use-toast";
-import { Link } from "react-router-dom";
-import { Eye } from "lucide-react";
-
-type Topic = {
-  id: string;
-  number: string;
-  title: string;
-  color: string;
-  icon: string;
-  answers?: { author: string; content: string }[];
-};
+import { Topic, TimeFilterOption } from "@/types/topic";
+import TimeFilter from "./TimeFilter";
+import TopicItem from "./TopicItem";
 
 const topics: Topic[] = [
   {
@@ -75,11 +67,13 @@ const topics: Topic[] = [
   },
 ];
 
-type TimeFilterOption = "Heute" | "Gestern" | "Diese Woche" | "Diesen Monat";
-
 const TopicsList: React.FC = () => {
   const [selectedFilter, setSelectedFilter] = useState<TimeFilterOption>("Heute");
   const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
+
+  const handleFilterChange = (filter: TimeFilterOption) => {
+    setSelectedFilter(filter);
+  };
 
   const handleTopicClick = (topicId: string) => {
     if (expandedTopic === topicId) {
@@ -104,68 +98,20 @@ const TopicsList: React.FC = () => {
         <div className="text-[rgba(219,219,219,1)] text-base font-medium font-league-spartan">
           Das beschäftigt Melle
         </div>
-        <div className="bg-[rgba(50,50,50,1)] flex w-full items-center gap-[7px] text-sm text-[rgba(83,83,83,1)] font-normal leading-none justify-between mt-[19px]">
-          {(
-            [
-              "Heute",
-              "Gestern",
-              "Diese Woche",
-              "Diesen Monat",
-            ] as TimeFilterOption[]
-          ).map((option) => (
-            <button
-              key={option}
-              className={`self-stretch ${
-                selectedFilter === option
-                  ? "bg-[rgba(65,125,181,1)] text-[rgba(244,244,244,1)] font-bold"
-                  : "bg-[rgba(219,219,219,1)]"
-              } gap-2.5 whitespace-nowrap my-auto px-2.5 py-2 rounded-[5px] font-league-spartan transition-all duration-300 hover:opacity-90 active:scale-95`}
-              onClick={() => setSelectedFilter(option)}
-            >
-              {option}
-            </button>
-          ))}
-        </div>
+        <TimeFilter 
+          selectedFilter={selectedFilter} 
+          onFilterChange={handleFilterChange} 
+        />
       </div>
       <div className="self-center w-[311px] max-w-full font-normal mt-[30px]">
         <div className="w-full">
           {topics.map((topic, index) => (
-            <React.Fragment key={topic.id}>
-              <div className="flex flex-col w-full">
-                <Link 
-                  to={`/question/${topic.id}`}
-                  className="flex min-h-[18px] w-full items-center gap-[40px_100px] justify-between hover:opacity-80 transition-opacity cursor-pointer hover-scale"
-                >
-                  <div className="self-stretch flex items-center gap-[5px] my-auto">
-                    <div
-                      style={{ color: topic.color }}
-                      className="text-base self-stretch my-auto"
-                    >
-                      {topic.number}
-                    </div>
-                    <div
-                      style={{ color: topic.color }}
-                      className="text-2xl self-stretch my-auto"
-                    >
-                      {topic.title}
-                    </div>
-                  </div>
-                  <img
-                    src={topic.icon}
-                    alt="Icon"
-                    className="aspect-[1] object-contain w-[18px] self-stretch shrink-0 my-auto"
-                  />
-                </Link>
-                
-                {/* Removed expanded answers section since we now use the dedicated question page */}
-              </div>
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/381176adfb1801e11719cdb964993289012780f23fdfac0e5f401de76dac903f?placeholderIfAbsent=true"
-                alt="Divider"
-                className="aspect-[333.33] object-contain w-full mt-3"
-              />
-              {index < topics.length - 1 && <div className="mt-3"></div>}
-            </React.Fragment>
+            <TopicItem 
+              key={topic.id} 
+              topic={topic} 
+              index={index} 
+              isLast={index === topics.length - 1} 
+            />
           ))}
         </div>
         <div className="text-[rgba(219,219,219,1)] text-lg text-center mt-[5px] cursor-pointer hover:underline transition-all duration-200">
