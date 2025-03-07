@@ -74,7 +74,7 @@ const QuestionDetail: React.FC = () => {
           date: "Gerade eben"
         };
         
-        setAnswers([newAnswer, ...answers]);
+        setAnswers(prevAnswers => [newAnswer, ...prevAnswers]);
         setAnswerText('');
         
         toast({
@@ -102,6 +102,22 @@ const QuestionDetail: React.FC = () => {
   if (!question) {
     return <NotFoundState />;
   }
+
+  // Get the category color for styling
+  const getCategoryColor = () => {
+    switch (question.categoryType) {
+      case 'freizeit':
+        return '#1F45CD'; // Blue
+      case 'verkehr':
+        return '#0A9D2F'; // Green
+      case 'politik':
+        return '#D12C9B'; // Purple
+      case 'wohnen':
+        return '#E5924E'; // Orange
+      default:
+        return '#4EACE5'; // Default blue
+    }
+  };
 
   return (
     <div className="bg-[rgba(242,242,242,1)] flex max-w-[480px] w-full flex-col items-stretch mx-auto pb-[15px] px-1.5 font-dongle min-h-screen">
