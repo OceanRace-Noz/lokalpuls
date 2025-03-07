@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import { Eye } from "lucide-react";
 
 interface QuestionCardProps {
   title: string;
@@ -78,7 +79,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
   
   return (
     <div
-      className="flex w-full flex-col overflow-hidden items-stretch justify-center px-3 py-[30px] rounded-[10px] transition-transform duration-300 hover:scale-[1.01] cursor-pointer"
+      className="flex w-full flex-col overflow-hidden items-stretch justify-center px-3 py-[30px] rounded-[10px] transition-transform duration-300 hover:scale-[1.01] cursor-pointer animate-fade-in"
       style={{ background: bgStyles[categoryType] }}
     >
       <div className="w-full">
@@ -96,7 +97,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
             />
           </div>
           <div
-            className="inline-block text-sm text-[#F6F6F6] font-normal whitespace-nowrap leading-none mt-3 px-[15px] py-[9px] rounded-sm w-auto"
+            className="inline-block text-sm text-[#F6F6F6] font-normal whitespace-nowrap leading-none mt-3 px-[15px] py-[9px] rounded-sm w-auto self-start"
             style={{ backgroundColor: categoryColor }}
           >
             {category}
@@ -129,7 +130,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
             </div>
           </div>
         </div>
-        <div className="flex w-full gap-4 justify-between mt-[30px]">
+        <div className="flex w-full items-end gap-4 justify-between mt-[30px]">
           <div className="flex flex-col items-stretch w-[204px]">
             <div className="flex w-full items-center gap-1 text-sm text-[#858585] font-normal leading-none">
               <img
@@ -158,34 +159,31 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
                   {answerCount} Antworten
                 </div>
               </div>
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/28d5e78c94b56e5fef31251950ba4098f18269339d311939faf06e17f0c3c388?placeholderIfAbsent=true"
-                alt=""
-                className="object-contain w-0 self-stretch shrink-0 my-auto"
-              />
-              <div className="self-stretch flex items-center gap-1 font-medium whitespace-nowrap my-auto">
-                <div className="self-stretch flex w-[15px] shrink-0 h-[15px] my-auto" />
+              <div className="self-stretch flex items-center gap-1 font-medium whitespace-nowrap my-auto ml-2">
+                <Eye size={15} className="text-[#858585]" />
                 <div className="self-stretch my-auto">{viewCount}</div>
               </div>
             </div>
           </div>
-          <div className="relative flex gap-2 text-xs text-[rgba(57,57,57,1)] font-normal text-right leading-loose">
-            <div className="self-stretch flex-1 shrink basis-[0%] z-0 gap-2.5 w-[67px] pb-1">
+          <div className="flex items-end gap-2 text-xs text-[rgba(57,57,57,1)] font-normal leading-loose">
+            <div className="flex items-end gap-1">
               <span className="text-[rgba(200,200,200,1)]">von</span>{" "}
               <span className="font-bold text-[rgba(113,183,206,1)] hover:underline cursor-pointer">
                 {userName}
               </span>
             </div>
-            <img
-              src={userImage}
-              alt="User"
-              className="aspect-[1] object-contain w-10 z-0 shrink-0 rounded-[50%] hover:opacity-90 transition-opacity cursor-pointer"
-            />
-            <img
-              src={userStatusImage}
-              alt="Status"
-              className="aspect-[0.79] object-contain w-[15px] absolute z-0 shrink-0 h-[19px] right-0 bottom-0"
-            />
+            <div className="relative">
+              <img
+                src={userImage}
+                alt="User"
+                className="aspect-[1] object-contain w-10 shrink-0 rounded-[50%] hover:opacity-90 transition-opacity cursor-pointer"
+              />
+              <img
+                src={userStatusImage}
+                alt="Status"
+                className="aspect-[0.79] object-contain w-[15px] absolute shrink-0 h-[19px] right-0 bottom-0"
+              />
+            </div>
           </div>
         </div>
       </div>

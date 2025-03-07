@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import { toast } from "@/components/ui/use-toast";
 
 type Topic = {
   id: string;
@@ -7,6 +8,7 @@ type Topic = {
   title: string;
   color: string;
   icon: string;
+  answers?: { author: string; content: string }[];
 };
 
 const topics: Topic[] = [
@@ -16,6 +18,20 @@ const topics: Topic[] = [
     title: '"Wo gibt\'s Erdbeeren?"',
     color: "#7bb2e6",
     icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/a34f267e9417cb7bcef73766c2d0d6c4d4f52da54a64e521c97ace0688881644?placeholderIfAbsent=true",
+    answers: [
+      { 
+        author: "Maria Schmidt", 
+        content: "Im Hofladen Meier in Buer gibt es aktuell super leckere Erdbeeren! Die haben noch bis Ende der Woche geöffnet." 
+      },
+      { 
+        author: "Thomas Weber", 
+        content: "Auf dem Wochenmarkt am Donnerstag hatte der Stand von Familie Brinkmann noch welche. Unbedingt früh hingehen, die sind schnell weg!" 
+      },
+      { 
+        author: "Sabine Müller", 
+        content: "Bei 'Erdbeeren selbst pflücken' an der Oldendorfer Straße kann man noch super Erdbeeren selbst pflücken. Wir waren gestern dort." 
+      }
+    ]
   },
   {
     id: "2",
@@ -23,6 +39,16 @@ const topics: Topic[] = [
     title: '"Neues Hofcafé in Melle"',
     color: "#F1AB7B",
     icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/a3bfcb4976dad092ebe9d540a213336e8801e36d0684f66cc6e10526533f4e34?placeholderIfAbsent=true",
+    answers: [
+      { 
+        author: "Julia Klein", 
+        content: "Das neue Café hat letzten Samstag eröffnet. Die selbstgemachten Kuchen sind fantastisch!" 
+      },
+      { 
+        author: "Michael Berger", 
+        content: "Habe gehört, dass sie auch regionale Produkte verkaufen. Hat jemand schon Erfahrungen damit gemacht?" 
+      }
+    ]
   },
   {
     id: "3",
@@ -50,8 +76,25 @@ const topics: Topic[] = [
 type TimeFilterOption = "Heute" | "Gestern" | "Diese Woche" | "Diesen Monat";
 
 const TopicsList: React.FC = () => {
-  const [selectedFilter, setSelectedFilter] =
-    useState<TimeFilterOption>("Heute");
+  const [selectedFilter, setSelectedFilter] = useState<TimeFilterOption>("Heute");
+  const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
+
+  const handleTopicClick = (topicId: string) => {
+    if (expandedTopic === topicId) {
+      setExpandedTopic(null);
+    } else {
+      setExpandedTopic(topicId);
+      
+      // Show toast for topics without answers data
+      const topic = topics.find(t => t.id === topicId);
+      if (!topic?.answers) {
+        toast({
+          title: "Information",
+          description: "Antworten werden geladen...",
+        });
+      }
+    }
+  };
 
   return (
     <div className="self-center flex w-[335px] max-w-full flex-col items-stretch mt-[17px]">
@@ -86,26 +129,47 @@ const TopicsList: React.FC = () => {
         <div className="w-full">
           {topics.map((topic, index) => (
             <React.Fragment key={topic.id}>
-              <div className="flex min-h-[18px] w-full items-center gap-[40px_100px] justify-between hover:opacity-80 transition-opacity cursor-pointer">
-                <div className="self-stretch flex items-center gap-[5px] my-auto">
-                  <div
-                    style={{ color: topic.color }}
-                    className="text-base self-stretch my-auto"
-                  >
-                    {topic.number}
+              <div className="flex flex-col w-full">
+                <div 
+                  className="flex min-h-[18px] w-full items-center gap-[40px_100px] justify-between hover:opacity-80 transition-opacity cursor-pointer hover-scale"
+                  onClick={() => handleTopicClick(topic.id)}
+                >
+                  <div className="self-stretch flex items-center gap-[5px] my-auto">
+                    <div
+                      style={{ color: topic.color }}
+                      className="text-base self-stretch my-auto"
+                    >
+                      {topic.number}
+                    </div>
+                    <div
+                      style={{ color: topic.color }}
+                      className="text-2xl self-stretch my-auto"
+                    >
+                      {topic.title}
+                    </div>
                   </div>
-                  <div
-                    style={{ color: topic.color }}
-                    className="text-2xl self-stretch my-auto"
-                  >
-                    {topic.title}
-                  </div>
+                  <img
+                    src={topic.icon}
+                    alt="Icon"
+                    className="aspect-[1] object-contain w-[18px] self-stretch shrink-0 my-auto"
+                  />
                 </div>
-                <img
-                  src={topic.icon}
-                  alt="Icon"
-                  className="aspect-[1] object-contain w-[18px] self-stretch shrink-0 my-auto"
-                />
+                
+                {/* Expanded answers section */}
+                {expandedTopic === topic.id && topic.answers && (
+                  <div className="mt-2 pl-6 animate-fade-in">
+                    {topic.answers.map((answer, idx) => (
+                      <div 
+                        key={idx} 
+                        className="bg-[#323232] text-white p-3 rounded mb-2 text-left animate-scale-in"
+                        style={{ animationDelay: `${idx * 150}ms` }}
+                      >
+                        <div className="font-bold text-sm text-[#71B7CE] mb-1">{answer.author}</div>
+                        <p className="text-sm font-dongle text-[#DBDBDB]">{answer.content}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
               <img
                 src="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/381176adfb1801e11719cdb964993289012780f23fdfac0e5f401de76dac903f?placeholderIfAbsent=true"
