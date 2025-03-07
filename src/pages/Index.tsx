@@ -61,7 +61,7 @@ const Index: React.FC = () => {
           </div>
 
           <div className="flex w-full flex-col items-stretch mt-[19px]">
-            <Link to="/question/1" className="block hover:opacity-95 transition-opacity">
+            <Link to="/question/indoor-activities" className="block hover:opacity-95 transition-opacity">
               <QuestionCard
                 title="Indoor-Aktivitäten in Melle"
                 category="#Freizeit"
@@ -84,7 +84,7 @@ const Index: React.FC = () => {
 
             <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/484ca79a89bcb7bc652da7fccb68a544bf52aad5c7d239c975b4dd674854a32b?placeholderIfAbsent=true" />
 
-            <Link to="/question/2" className="block hover:opacity-95 transition-opacity">
+            <Link to="/question/street-construction" className="block hover:opacity-95 transition-opacity">
               <QuestionCard
                 title="Straßenarbeiten auf der B65"
                 category="#Verkehr"
@@ -107,7 +107,7 @@ const Index: React.FC = () => {
 
             <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/484ca79a89bcb7bc652da7fccb68a544bf52aad5c7d239c975b4dd674854a32b?placeholderIfAbsent=true" />
 
-            <Link to="/question/3" className="block hover:opacity-95 transition-opacity">
+            <Link to="/question/political-participation" className="block hover:opacity-95 transition-opacity">
               <QuestionCard
                 title="Politische Teilhabe für Jugendliche in Melle"
                 category="#Politik"
@@ -134,7 +134,7 @@ const Index: React.FC = () => {
 
             <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/0a5597e7d9ed1ca2f00cb2a9b4b611d0302d82b11db4b7a2c3368f419a676569?placeholderIfAbsent=true" />
 
-            <Link to="/question/4" className="block hover:opacity-95 transition-opacity">
+            <Link to="/question/best-districts" className="block hover:opacity-95 transition-opacity">
               <QuestionCard
                 title="Beste Stadtteile für junge Familien?"
                 category="#Wohnen"

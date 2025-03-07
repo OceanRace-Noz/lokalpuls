@@ -10,11 +10,29 @@ interface TopicItemProps {
 }
 
 const TopicItem: React.FC<TopicItemProps> = ({ topic, index, isLast }) => {
+  // Map the topic ID to the appropriate route
+  const getTopicRoute = (topicType: string, id: string) => {
+    switch (id) {
+      case "1":
+        return "/question/1"; // Erdbeeren question
+      case "2":
+        return "/question/2"; // Hofcafé question
+      case "3":
+        return "/question/political-participation"; // Political participation
+      case "4":
+        return "/question/best-districts"; // Best districts
+      case "5":
+        return "/question/3"; // Kita-Plätze
+      default:
+        return `/question/${id}`;
+    }
+  };
+
   return (
     <React.Fragment>
       <div className="flex flex-col w-full">
         <Link 
-          to={`/question/${topic.id}`}
+          to={getTopicRoute(topic.categoryType, topic.id)}
           className="flex min-h-[18px] w-full items-center gap-[40px_100px] justify-between hover:opacity-80 transition-opacity cursor-pointer hover-scale"
         >
           <div className="self-stretch flex items-center gap-[5px] my-auto">
