@@ -95,6 +95,21 @@ const QuestionDetail: React.FC = () => {
       });
   };
 
+  const handleDeleteAnswer = (answerId: number | undefined) => {
+    if (!answerId) return;
+    
+    // Filter out the answer to be deleted
+    setAnswers(prevAnswers => prevAnswers.filter(answer => answer.id !== answerId));
+    
+    toast({
+      title: "Antwort gelöscht",
+      description: "Deine Antwort wurde erfolgreich gelöscht.",
+    });
+    
+    // In a real app, you'd make an API call to delete the answer
+    console.log(`Answer ${answerId} deleted`);
+  };
+
   if (loading) {
     return <LoadingState />;
   }
@@ -103,25 +118,9 @@ const QuestionDetail: React.FC = () => {
     return <NotFoundState />;
   }
 
-  // Get the category color for styling
-  const getCategoryColor = () => {
-    switch (question.categoryType) {
-      case 'freizeit':
-        return '#1F45CD'; // Blue
-      case 'verkehr':
-        return '#0A9D2F'; // Green
-      case 'politik':
-        return '#D12C9B'; // Purple
-      case 'wohnen':
-        return '#E5924E'; // Orange
-      default:
-        return '#4EACE5'; // Default blue
-    }
-  };
-
   return (
     <div className="bg-[rgba(242,242,242,1)] flex max-w-[480px] w-full flex-col items-stretch mx-auto pb-[15px] px-1.5 font-dongle min-h-screen">
-      <div className="bg-[rgba(44,44,44,1)] flex shrink-0 h-[167px]" />
+      <div className={`bg-${question.categoryType} flex shrink-0 h-[167px]`} />
       <div className="z-10 flex mt-[-167px] flex-col items-center">
         <div className="items-stretch self-stretch bg-[#2C2C2C] flex w-full flex-col pb-2.5">
           <Header />
@@ -146,6 +145,8 @@ const QuestionDetail: React.FC = () => {
             <AnswersList 
               answers={answers}
               answerCount={answers.length}
+              onDeleteAnswer={handleDeleteAnswer}
+              currentUser="Du"
             />
           </div>
         </div>
