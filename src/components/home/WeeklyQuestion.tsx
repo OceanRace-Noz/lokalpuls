@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import { Eye } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const WeeklyQuestion: React.FC = () => {
   const [voted, setVoted] = useState<'up' | 'down' | null>(null);
@@ -43,9 +44,9 @@ const WeeklyQuestion: React.FC = () => {
   return (
     <div className="w-full pt-[15px] rounded-[0px_0px_0px_0px]">
       <div className="bg-[rgba(78,172,229,1)] flex flex-col items-stretch justify-center px-[5px] py-[3px] rounded-[5px]">
-        <div 
+        <Link 
+          to="/question/weekly"
           className="bg-[rgba(224,235,242,1)] z-10 flex mt-[-5px] w-full flex-col items-stretch pt-4 pb-2.5 px-4 rounded-[5px] transition-all duration-300 hover:scale-[1.01] cursor-pointer"
-          onClick={() => setExpanded(!expanded)}
         >
           <div className="text-[rgba(78,172,229,1)] text-sm font-medium font-league-spartan">
             Frage der Woche
@@ -58,6 +59,7 @@ const WeeklyQuestion: React.FC = () => {
             <div 
               className="text-[rgba(133,133,133,1)] text-xs font-bold leading-none underline self-stretch my-auto cursor-pointer hover:text-[rgba(78,172,229,1)] transition-colors"
               onClick={(e) => {
+                e.preventDefault();
                 e.stopPropagation();
                 setAnswered(!answered);
               }}
@@ -71,6 +73,7 @@ const WeeklyQuestion: React.FC = () => {
                   alt="Upvote"
                   className={`aspect-[1] object-contain w-3 self-stretch shrink-0 my-auto cursor-pointer ${voted === 'up' ? 'filter brightness-0 saturate-100 invert-[22%] sepia-[99%] saturate-[7451%] hue-rotate-[93deg] brightness-[96%] contrast-[110%]' : ''}`}
                   onClick={(e) => {
+                    e.preventDefault();
                     e.stopPropagation();
                     handleVote('up');
                   }}
@@ -84,28 +87,8 @@ const WeeklyQuestion: React.FC = () => {
             </div>
           </div>
           
-          {/* Expanded answers section with animation */}
-          {expanded && (
-            <div className="mt-4 border-t border-gray-200 pt-3 animate-fade-in">
-              <h4 className="text-[#393939] text-xl font-dongle mb-2">Antworten:</h4>
-              {placeholderAnswers.map((answer) => (
-                <div key={answer.id} className="bg-white p-3 rounded-md mb-2 shadow-sm animate-scale-in transition-all hover:shadow-md">
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="text-blue-500 font-medium text-sm">{answer.author}</span>
-                    <span className="text-gray-500 text-xs">{answer.likes} Likes</span>
-                  </div>
-                  <p className="text-gray-700 text-sm">{answer.content}</p>
-                </div>
-              ))}
-              <button 
-                className="text-[rgba(78,172,229,1)] text-sm w-full text-center mt-2 hover:underline"
-                onClick={(e) => e.stopPropagation()}
-              >
-                Alle Antworten anzeigen
-              </button>
-            </div>
-          )}
-        </div>
+          {/* We're removing the expanded section since we now link to a dedicated page */}
+        </Link>
       </div>
     </div>
   );

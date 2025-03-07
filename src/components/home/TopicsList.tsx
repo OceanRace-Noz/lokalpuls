@@ -1,6 +1,8 @@
 
 import React, { useState } from "react";
 import { toast } from "@/components/ui/use-toast";
+import { Link } from "react-router-dom";
+import { Eye } from "lucide-react";
 
 type Topic = {
   id: string;
@@ -130,9 +132,9 @@ const TopicsList: React.FC = () => {
           {topics.map((topic, index) => (
             <React.Fragment key={topic.id}>
               <div className="flex flex-col w-full">
-                <div 
+                <Link 
+                  to={`/question/${topic.id}`}
                   className="flex min-h-[18px] w-full items-center gap-[40px_100px] justify-between hover:opacity-80 transition-opacity cursor-pointer hover-scale"
-                  onClick={() => handleTopicClick(topic.id)}
                 >
                   <div className="self-stretch flex items-center gap-[5px] my-auto">
                     <div
@@ -153,23 +155,9 @@ const TopicsList: React.FC = () => {
                     alt="Icon"
                     className="aspect-[1] object-contain w-[18px] self-stretch shrink-0 my-auto"
                   />
-                </div>
+                </Link>
                 
-                {/* Expanded answers section */}
-                {expandedTopic === topic.id && topic.answers && (
-                  <div className="mt-2 pl-6 animate-fade-in">
-                    {topic.answers.map((answer, idx) => (
-                      <div 
-                        key={idx} 
-                        className="bg-[#323232] text-white p-3 rounded mb-2 text-left animate-scale-in"
-                        style={{ animationDelay: `${idx * 150}ms` }}
-                      >
-                        <div className="font-bold text-sm text-[#71B7CE] mb-1">{answer.author}</div>
-                        <p className="text-sm font-dongle text-[#DBDBDB]">{answer.content}</p>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                {/* Removed expanded answers section since we now use the dedicated question page */}
               </div>
               <img
                 src="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/381176adfb1801e11719cdb964993289012780f23fdfac0e5f401de76dac903f?placeholderIfAbsent=true"
