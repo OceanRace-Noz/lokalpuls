@@ -16,6 +16,8 @@ const QuestionDetail: React.FC = () => {
   const [voteStatus, setVoteStatus] = useState<'up' | 'down' | null>(null);
   const [voteCount, setVoteCount] = useState<number>(0);
   const [answerText, setAnswerText] = useState<string>('');
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [answers, setAnswers] = useState<any[]>([]);
 
   useEffect(() => {
     if (!id) return;
@@ -25,6 +27,7 @@ const QuestionDetail: React.FC = () => {
       .then(questionData => {
         setQuestion(questionData);
         setVoteCount(questionData.votes);
+        setAnswers(questionData.answers || []);
         setLoading(false);
       })
       .catch(error => {
@@ -51,20 +54,33 @@ const QuestionDetail: React.FC = () => {
       setVoteCount(type === 'up' ? question.votes + 2 : question.votes - 2);
     }
 
-    // In a real app, this would update the server
+    // Update vote on server
     voteOnQuestion(id, type);
   };
 
   const handleAnswerSubmit = () => {
     if (!id || !answerText.trim()) return;
 
+    setIsSubmitting(true);
+    
     submitAnswer(id, answerText)
       .then(() => {
+        // Add the new answer to the list
+        const newAnswer = {
+          id: Date.now(), // temporary ID
+          author: "Du", // or could be from user profile
+          content: answerText,
+          likes: 0,
+          date: "Gerade eben"
+        };
+        
+        setAnswers([newAnswer, ...answers]);
+        setAnswerText('');
+        
         toast({
           title: "Antwort gesendet",
           description: "Deine Antwort wurde erfolgreich gesendet.",
         });
-        setAnswerText('');
       })
       .catch(error => {
         console.error("Error submitting answer:", error);
@@ -73,6 +89,9 @@ const QuestionDetail: React.FC = () => {
           description: "Beim Senden deiner Antwort ist ein Fehler aufgetreten.",
           variant: "destructive",
         });
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
   };
 
@@ -105,11 +124,12 @@ const QuestionDetail: React.FC = () => {
               answerText={answerText}
               setAnswerText={setAnswerText}
               onSubmit={handleAnswerSubmit}
+              isSubmitting={isSubmitting}
             />
             
             <AnswersList 
-              answers={question.answers}
-              answerCount={question.answerCount}
+              answers={answers}
+              answerCount={answers.length}
             />
           </div>
         </div>
