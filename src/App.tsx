@@ -9,6 +9,10 @@ import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import QuestionDetail from "./pages/QuestionDetail";
 import WeeklyQuestionPage from "./pages/WeeklyQuestionPage";
+import IndoorActivitiesPage from "./pages/IndoorActivitiesPage";
+import StreetConstructionPage from "./pages/StreetConstructionPage";
+import PoliticalParticipationPage from "./pages/PoliticalParticipationPage";
+import BestDistrictsPage from "./pages/BestDistrictsPage";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +27,10 @@ const App = () => (
           <Route path="/profile" element={<Profile />} />
           <Route path="/question/:id" element={<QuestionDetail />} />
           <Route path="/question/weekly" element={<WeeklyQuestionPage />} />
+          <Route path="/question/indoor-activities" element={<IndoorActivitiesPage />} />
+          <Route path="/question/street-construction" element={<StreetConstructionPage />} />
+          <Route path="/question/political-participation" element={<PoliticalParticipationPage />} />
+          <Route path="/question/best-districts" element={<BestDistrictsPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
