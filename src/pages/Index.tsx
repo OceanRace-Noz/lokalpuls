@@ -13,8 +13,8 @@ import HamburgerMenu from "@/components/home/HamburgerMenu";
 const Index: React.FC = () => {
   return (
     <main className="bg-[rgba(242,242,242,1)] flex max-w-[480px] w-full flex-col items-stretch mx-auto pb-[15px] px-1.5 font-dongle">
-      <div className="bg-[rgba(44,44,44,1)] flex shrink-0 h-[167px]" />
-      <div className="z-10 flex mt-[-167px] flex-col items-center">
+      <div className="bg-[rgba(44,44,44,1)] flex shrink-0 h-[110px]" /> {/* Adjusted height here */}
+      <div className="z-10 flex mt-[-110px] flex-col items-center"> {/* Adjusted margin-top here */}
         <div className="items-stretch self-stretch bg-[#2C2C2C] flex w-full flex-col pb-2.5">
           <Header />
           <TopicsList />
