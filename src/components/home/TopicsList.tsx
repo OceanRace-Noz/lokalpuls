@@ -10,6 +10,8 @@ type Topic = {
   title: string;
   color: string;
   icon: string;
+  category?: string;
+  categoryType?: 'freizeit' | 'verkehr' | 'politik' | 'wohnen';
   answers?: { author: string; content: string }[];
 };
 
@@ -20,6 +22,8 @@ const topics: Topic[] = [
     title: '"Wo gibt\'s Erdbeeren?"',
     color: "#7bb2e6",
     icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/a34f267e9417cb7bcef73766c2d0d6c4d4f52da54a64e521c97ace0688881644?placeholderIfAbsent=true",
+    category: "#Freizeit",
+    categoryType: "freizeit",
     answers: [
       { 
         author: "Maria Schmidt", 
@@ -41,6 +45,8 @@ const topics: Topic[] = [
     title: '"Neues Hofcafé in Melle"',
     color: "#F1AB7B",
     icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/a3bfcb4976dad092ebe9d540a213336e8801e36d0684f66cc6e10526533f4e34?placeholderIfAbsent=true",
+    category: "#Freizeit",
+    categoryType: "freizeit",
     answers: [
       { 
         author: "Julia Klein", 
@@ -58,6 +64,8 @@ const topics: Topic[] = [
     title: '"Vorbereitung der Krankenhäuser"',
     color: "#70B894",
     icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/df9a1fdbc59f9318b4a910bb577c7e13900738e2bb906a094a49bd3dea1d821d?placeholderIfAbsent=true",
+    category: "#Politik",
+    categoryType: "politik",
   },
   {
     id: "4",
@@ -65,6 +73,8 @@ const topics: Topic[] = [
     title: '"Neuer Supermarkt in Gesmold"',
     color: "#B984C8",
     icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/28ed1209a7f3ee11bedd572f537d8d78df26d625e4a3d4c537c3f9b1da240796?placeholderIfAbsent=true",
+    category: "#Wohnen",
+    categoryType: "wohnen",
   },
   {
     id: "5",
@@ -72,6 +82,8 @@ const topics: Topic[] = [
     title: '"Kita-Plätze"',
     color: "#D37B7D",
     icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/a75d79a3a85805474216b8881e8bda389fce214d7557bb9849df138e7b568d1a?placeholderIfAbsent=true",
+    category: "#Verkehr",
+    categoryType: "verkehr",
   },
 ];
 
@@ -95,6 +107,22 @@ const TopicsList: React.FC = () => {
           description: "Antworten werden geladen...",
         });
       }
+    }
+  };
+
+  // Get the CSS class for the question background based on category type
+  const getBackgroundClass = (categoryType?: 'freizeit' | 'verkehr' | 'politik' | 'wohnen') => {
+    switch(categoryType) {
+      case 'freizeit':
+        return 'bg-freizeit';
+      case 'verkehr':
+        return 'bg-verkehr';
+      case 'politik':
+        return 'bg-politik';
+      case 'wohnen':
+        return 'bg-wohnen';
+      default:
+        return 'bg-freizeit'; // Default to freizeit if no category is specified
     }
   };
 
@@ -134,7 +162,7 @@ const TopicsList: React.FC = () => {
               <div className="flex flex-col w-full">
                 <Link 
                   to={`/question/${topic.id}`}
-                  className="flex min-h-[18px] w-full items-center gap-[40px_100px] justify-between hover:opacity-80 transition-opacity cursor-pointer hover-scale"
+                  className={`flex min-h-[18px] w-full items-center gap-[40px_100px] justify-between hover:opacity-80 transition-opacity cursor-pointer hover-scale rounded-lg p-3 my-1 ${getBackgroundClass(topic.categoryType)}`}
                 >
                   <div className="self-stretch flex items-center gap-[5px] my-auto">
                     <div
@@ -157,7 +185,11 @@ const TopicsList: React.FC = () => {
                   />
                 </Link>
                 
-                {/* Removed expanded answers section since we now use the dedicated question page */}
+                {topic.category && (
+                  <div className={`inline-block text-xs text-white font-normal whitespace-nowrap leading-none mt-1 px-2 py-1 rounded-sm w-auto self-start category-${topic.categoryType}`}>
+                    {topic.category}
+                  </div>
+                )}
               </div>
               <img
                 src="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/381176adfb1801e11719cdb964993289012780f23fdfac0e5f401de76dac903f?placeholderIfAbsent=true"
