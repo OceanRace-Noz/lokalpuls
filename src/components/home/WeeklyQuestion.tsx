@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 const WeeklyQuestion: React.FC = () => {
   const [voted, setVoted] = useState<'up' | 'down' | null>(null);
   const [votes, setVotes] = useState<number>(58);
-  const [answered, setAnswered] = useState<boolean>(false);
-  const [expanded, setExpanded] = useState<boolean>(false);
 
   const handleVote = (voteType: 'up' | 'down') => {
     if (voted === voteType) {
@@ -25,22 +23,6 @@ const WeeklyQuestion: React.FC = () => {
     }
   };
 
-  // Placeholder answers for the weekly question
-  const placeholderAnswers = [
-    {
-      id: 1,
-      author: "Maria L.",
-      content: "Das Meller Herbstfest ist ein absolutes Muss! Tolle Stimmung, leckeres Essen und viele lokale Händler. Unbedingt hingehen!",
-      likes: 12
-    },
-    {
-      id: 2,
-      author: "Thomas K.",
-      content: "Die Kürbisausstellung im Gartencenter sollte man auf keinen Fall verpassen. Perfekt für tolle Herbstfotos und die Kinder lieben es.",
-      likes: 8
-    },
-  ];
-
   return (
     <div className="w-full pt-[15px] rounded-[0px_0px_0px_0px]">
       <div className="bg-[rgba(78,172,229,1)] flex flex-col items-stretch justify-center px-[5px] py-[3px] rounded-[5px]">
@@ -56,14 +38,7 @@ const WeeklyQuestion: React.FC = () => {
             Fall verpassen?"
           </div>
           <div className="flex w-full items-center gap-[40px_100px] justify-between mt-5">
-            <div 
-              className="text-[rgba(133,133,133,1)] text-xs font-bold leading-none underline self-stretch my-auto cursor-pointer hover:text-[rgba(78,172,229,1)] transition-colors"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setAnswered(!answered);
-              }}
-            >
+            <div className="text-[rgba(133,133,133,1)] text-xs font-bold leading-none underline self-stretch my-auto cursor-pointer hover:text-[rgba(78,172,229,1)] transition-colors">
               32 Antworten
             </div>
             <div className="self-stretch flex items-center gap-[9px] text-[10px] text-[#858585] font-medium whitespace-nowrap my-auto">
@@ -82,12 +57,10 @@ const WeeklyQuestion: React.FC = () => {
               </div>
               <div className="self-stretch flex items-center gap-[3px] my-auto">
                 <Eye size={12} className="text-[#858585]" />
-                <div className="self-stretch my-auto">12</div>
+                <div className="self-stretch my-auto">128</div>
               </div>
             </div>
           </div>
-          
-          {/* We're removing the expanded section since we now link to a dedicated page */}
         </Link>
       </div>
     </div>

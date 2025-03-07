@@ -5,6 +5,8 @@ export type Topic = {
   title: string;
   color: string;
   icon: string;
+  categoryType: "freizeit" | "verkehr" | "politik" | "wohnen";
+  category: string;
   answers?: { author: string; content: string }[];
 };
 

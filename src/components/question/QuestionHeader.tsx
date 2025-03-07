@@ -27,6 +27,28 @@ const QuestionHeader: React.FC<QuestionHeaderProps> = ({
   voteCount,
   onVote
 }) => {
+  // Map categoryType to its corresponding background color
+  const getBgColor = (type: string) => {
+    switch (type) {
+      case 'freizeit': return 'bg-blue-900';
+      case 'verkehr': return 'bg-green-900';
+      case 'politik': return 'bg-purple-900';
+      case 'wohnen': return 'bg-yellow-900';
+      default: return 'bg-blue-900';
+    }
+  };
+
+  // Map categoryType to its corresponding tag color
+  const getTagColor = (type: string) => {
+    switch (type) {
+      case 'freizeit': return 'bg-blue-600';
+      case 'verkehr': return 'bg-green-600';
+      case 'politik': return 'bg-purple-600';
+      case 'wohnen': return 'bg-yellow-600';
+      default: return 'bg-blue-600';
+    }
+  };
+
   return (
     <>
       <div className="flex items-center mb-4">
@@ -36,9 +58,9 @@ const QuestionHeader: React.FC<QuestionHeaderProps> = ({
         </Link>
       </div>
       
-      <div className={`bg-${question.categoryType} rounded-lg p-4 shadow-md animate-scale-in`}>
+      <div className={`${getBgColor(question.categoryType)} rounded-lg p-4 shadow-md animate-scale-in`}>
         <div className="mb-3 flex items-center">
-          <div className={`category-${question.categoryType} text-white text-xs px-2 py-1 rounded inline-block`}>
+          <div className={`${getTagColor(question.categoryType)} text-white text-xs px-2 py-1 rounded inline-block`}>
             #{question.category}
           </div>
         </div>

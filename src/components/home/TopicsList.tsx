@@ -12,6 +12,8 @@ const topics: Topic[] = [
     title: '"Wo gibt\'s Erdbeeren?"',
     color: "#7bb2e6",
     icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/a34f267e9417cb7bcef73766c2d0d6c4d4f52da54a64e521c97ace0688881644?placeholderIfAbsent=true",
+    categoryType: "freizeit",
+    category: "Freizeit",
     answers: [
       { 
         author: "Maria Schmidt", 
@@ -33,6 +35,8 @@ const topics: Topic[] = [
     title: '"Neues Hofcafé in Melle"',
     color: "#F1AB7B",
     icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/a3bfcb4976dad092ebe9d540a213336e8801e36d0684f66cc6e10526533f4e34?placeholderIfAbsent=true",
+    categoryType: "freizeit",
+    category: "Freizeit",
     answers: [
       { 
         author: "Julia Klein", 
@@ -50,6 +54,8 @@ const topics: Topic[] = [
     title: '"Vorbereitung der Krankenhäuser"',
     color: "#70B894",
     icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/df9a1fdbc59f9318b4a910bb577c7e13900738e2bb906a094a49bd3dea1d821d?placeholderIfAbsent=true",
+    categoryType: "politik",
+    category: "Politik",
   },
   {
     id: "4",
@@ -57,6 +63,8 @@ const topics: Topic[] = [
     title: '"Neuer Supermarkt in Gesmold"',
     color: "#B984C8",
     icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/28ed1209a7f3ee11bedd572f537d8d78df26d625e4a3d4c537c3f9b1da240796?placeholderIfAbsent=true",
+    categoryType: "wohnen",
+    category: "Wohnen",
   },
   {
     id: "5",
@@ -64,6 +72,8 @@ const topics: Topic[] = [
     title: '"Kita-Plätze"',
     color: "#D37B7D",
     icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/a75d79a3a85805474216b8881e8bda389fce214d7557bb9849df138e7b568d1a?placeholderIfAbsent=true",
+    categoryType: "politik",
+    category: "Politik",
   },
 ];
 
