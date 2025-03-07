@@ -27,6 +27,31 @@ const QuestionHeader: React.FC<QuestionHeaderProps> = ({
   voteCount,
   onVote
 }) => {
+  // Define category background colors
+  const categoryBgs = {
+    freizeit: "bg-gradient-to-b from-[#040C29] to-[#08164C]",
+    verkehr: "bg-gradient-to-b from-[#042904] to-[#084C11]",
+    politik: "bg-gradient-to-b from-[#29041E] to-[#5F1348]",
+    wohnen: "bg-gradient-to-b from-[#292504] to-[#483704]",
+    gesundheit: "bg-gradient-to-b from-[#041E29] to-[#0A4C5F]",
+    lokales: "bg-gradient-to-b from-[#1E0429] to-[#3E0A5F]",
+    familie: "bg-gradient-to-b from-[#292104] to-[#5F4A0A]"
+  };
+  
+  // Define category tag colors
+  const categoryColors = {
+    freizeit: "bg-[#1F45CD]",
+    verkehr: "bg-[rgba(10,157,47,1)]",
+    politik: "bg-[rgba(209,44,155,1)]",
+    wohnen: "bg-[rgba(229,146,78,1)]",
+    gesundheit: "bg-[#70B894]",
+    lokales: "bg-[#B984C8]",
+    familie: "bg-[#D37B7D]"
+  };
+  
+  const bgClass = categoryBgs[question.categoryType as keyof typeof categoryBgs] || "bg-gradient-to-b from-[#040C29] to-[#08164C]";
+  const tagColorClass = categoryColors[question.categoryType as keyof typeof categoryColors] || "bg-[#1F45CD]";
+
   return (
     <>
       <div className="flex items-center mb-4">
@@ -36,9 +61,9 @@ const QuestionHeader: React.FC<QuestionHeaderProps> = ({
         </Link>
       </div>
       
-      <div className={`bg-${question.categoryType} rounded-lg p-4 shadow-md animate-scale-in`}>
+      <div className={`${bgClass} rounded-lg p-4 shadow-md animate-scale-in`}>
         <div className="mb-3 flex items-center">
-          <div className={`category-${question.categoryType} text-white text-xs px-2 py-1 rounded inline-block`}>
+          <div className={`${tagColorClass} text-white text-xs px-2 py-1 rounded inline-block`}>
             #{question.category}
           </div>
         </div>

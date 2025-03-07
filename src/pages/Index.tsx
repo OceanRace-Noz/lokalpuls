@@ -63,15 +63,15 @@ const Index: React.FC = () => {
           <div className="flex w-full flex-col items-stretch mt-[19px]">
             <Link to="/question/1" className="block hover:opacity-95 transition-opacity">
               <QuestionCard
-                title="Indoor-Aktivitäten in Melle"
+                title="Wo gibt's Erdbeeren?"
                 category="#Freizeit"
                 categoryColor="#1F45CD"
-                question="Was macht ihr in Melle an einem regnerischen Tag? Gibt es coole Indoor-Aktivitäten oder versteckte Orte, die man besuchen sollte?"
+                question="Ich suche nach guten Erdbeeren in Melle. Hat jemand Empfehlungen, wo man aktuell frische und schmackhafte Erdbeeren kaufen oder selbst pflücken kann?"
                 votes={34}
                 hasExpertAnswer={true}
-                answerCount={4}
+                answerCount={3}
                 viewCount={42}
-                userName="Sarah98"
+                userName="Maria98"
                 userImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/78ef9f482949556fee014507c039900929e56aec43812f80c22465d974722768?placeholderIfAbsent=true"
                 userStatusImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/f9ed0dcca63f16140b3b8b4bcfac7c4603b013cb7f5634bfc3f38da8325ac837?placeholderIfAbsent=true"
                 bookmarkImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/c05aa67bb6643d7acc1eec5e46ab5454e023473c74883fabd77c191e4f18d75b?placeholderIfAbsent=true"
@@ -84,24 +84,24 @@ const Index: React.FC = () => {
 
             <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/484ca79a89bcb7bc652da7fccb68a544bf52aad5c7d239c975b4dd674854a32b?placeholderIfAbsent=true" />
 
-            <Link to="/question/2" className="block hover:opacity-95 transition-opacity">
+            <Link to="/question/4" className="block hover:opacity-95 transition-opacity">
               <QuestionCard
-                title="Straßenarbeiten auf der B65"
-                category="#Verkehr"
+                title="Neuer Supermarkt in Gesmold"
+                category="#Lokales"
                 categoryColor="rgba(10,157,47,1)"
-                question="Könnte das Expertenteam mir sagen, wann die Straßenarbeiten auf der B65 in Melle abgeschlossen sind? Die Umleitungen verursachen viel Verkehr, und ich würde gerne wissen, wann wir wieder mit normalem Verkehr rechnen können."
-                votes={34}
+                question="Ich habe gehört, dass in Gesmold ein neuer Supermarkt eröffnen soll. Weiß jemand mehr darüber? Wann soll die Eröffnung sein und welche Kette wird es?"
+                votes={22}
                 hasExpertAnswer={false}
-                answerCount={2}
-                viewCount={15}
-                userName="Tim_tt"
+                answerCount={3}
+                viewCount={38}
+                userName="AnnaM"
                 userImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/a4be9815998d61cd8e7c08f158c34d44e69da7914266ebd03acd8fa6fd6d56ee?placeholderIfAbsent=true"
                 userStatusImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/5aedf115c27453f39478091b6727e886371cda07b2b0c2f1f7d556984e41a35a?placeholderIfAbsent=true"
                 bookmarkImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/88056e827f5c08924fb2a0f697e0fa9b84245ef6b3e9283a5822738ff3e282c0?placeholderIfAbsent=true"
                 upvoteImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/ee96c7b4d1b0d2826a5affe51b6e8f1eaf627aae9824e0edd35034e40f8ca8d9?placeholderIfAbsent=true"
                 downvoteImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/480695f1aaf15e2feec019fb68a3d6b0c109fa96194b27d9a11d6bfb05ea5082?placeholderIfAbsent=true"
                 titleColor="#CDE8D0"
-                categoryType="verkehr"
+                categoryType="lokales"
               />
             </Link>
 
@@ -109,22 +109,22 @@ const Index: React.FC = () => {
 
             <Link to="/question/3" className="block hover:opacity-95 transition-opacity">
               <QuestionCard
-                title="Politische Teilhabe für Jugendliche in Melle"
-                category="#Politik"
+                title="Vorbereitung der Krankenhäuser"
+                category="#Gesundheit"
                 categoryColor="rgba(209,44,155,1)"
-                question="Was plant die Stadt Melle, um junge Leute stärker in politische Entscheidungen einzubinden? Gibt es bereits Projekte oder Möglichkeiten, wie wir als Bürger mehr mitgestalten können?"
-                votes={34}
+                question="Wie bereiten sich die Krankenhäuser in Melle auf die kommende Grippesaison vor? Gibt es besondere Maßnahmen oder Empfehlungen für die Bevölkerung?"
+                votes={15}
                 hasExpertAnswer={true}
-                answerCount={6}
-                viewCount={81}
-                userName="Ingrid_v"
+                answerCount={1}
+                viewCount={27}
+                userName="Dr_Mueller"
                 userImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/0ebb4de63fe8279919d49125ec459780476c1b65ff687594126e617b80b4990e?placeholderIfAbsent=true"
                 userStatusImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/d89cd4be9bc3bea6ea969df44a5d6454e6997481edc9ab3aa8d45b47df9ba4e4?placeholderIfAbsent=true"
                 bookmarkImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/a155ab12e9d06a290a0e337419208d560ff916dc2cd8747c3a2e5da5721b0769?placeholderIfAbsent=true"
                 upvoteImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/ee96c7b4d1b0d2826a5affe51b6e8f1eaf627aae9824e0edd35034e40f8ca8d9?placeholderIfAbsent=true"
                 downvoteImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/dec21c5d526a4e5c31781f71d4972e29e7d7e778c70ed2ff3e01968219b22c35?placeholderIfAbsent=true"
-                titleColor="#EACAE0"
-                categoryType="politik"
+                titleColor="#E0B8D3"
+                categoryType="gesundheit"
               />
             </Link>
 
@@ -134,24 +134,24 @@ const Index: React.FC = () => {
 
             <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/0a5597e7d9ed1ca2f00cb2a9b4b611d0302d82b11db4b7a2c3368f419a676569?placeholderIfAbsent=true" />
 
-            <Link to="/question/4" className="block hover:opacity-95 transition-opacity">
+            <Link to="/question/5" className="block hover:opacity-95 transition-opacity">
               <QuestionCard
-                title="Beste Stadtteile für junge Familien?"
-                category="#Wohnen"
+                title="Kita-Plätze"
+                category="#Familie"
                 categoryColor="rgba(229,146,78,1)"
-                question="Welche Stadtteile in Melle sind am besten für junge Familien zum Wohnen?"
-                votes={34}
+                question="Wir ziehen demnächst nach Melle und suchen einen Kita-Platz für unsere 3-jährige Tochter. Wie ist die Situation mit Kita-Plätzen? Gibt es lange Wartelisten?"
+                votes={19}
                 hasExpertAnswer={true}
-                answerCount={4}
-                viewCount={42}
-                userName="Lukas34"
+                answerCount={2}
+                viewCount={31}
+                userName="Neue_Meller"
                 userImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/1269bfed201292e3b91a2e9456105ff75d02704d44822e05e601c39c7e18041c?placeholderIfAbsent=true"
                 userStatusImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/563067b278b1bc6a7ce632cb189e70f7ea772957995c5fba90957937c5920552?placeholderIfAbsent=true"
                 bookmarkImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/f7ef53fb5aed52d09234a56e1e0939592d46e7b36be9fab42e64adbb4920fc14?placeholderIfAbsent=true"
                 upvoteImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/b01a29d0b9c46b70b12fcf5ef2b78606bb46e80fddd38b180089e92322131891?placeholderIfAbsent=true"
                 downvoteImage="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/70ec92c8d054ac7aaaf7d928be327a094fdfcc80e70e9bca56e93265fbc1b9c3?placeholderIfAbsent=true"
-                titleColor="#DBDBDB"
-                categoryType="wohnen"
+                titleColor="#F1D3BA"
+                categoryType="familie"
               />
             </Link>
 
