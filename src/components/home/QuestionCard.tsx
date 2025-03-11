@@ -61,7 +61,11 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
   
   const actualTitleColor = titleColor || titleColorMap[categoryType];
 
-  const handleVote = (voteType: 'up' | 'down') => {
+  const handleVote = (voteType: 'up' | 'down', e: React.MouseEvent) => {
+    // Stop the event from propagating to parent elements (Link)
+    e.stopPropagation();
+    e.preventDefault();
+    
     if (voted === voteType) {
       // Unvote
       setVoted(null);
@@ -75,6 +79,13 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
       setVoted(voteType);
       setVotes(voteType === 'up' ? initialVotes + 2 : initialVotes - 2);
     }
+  };
+  
+  const handleBookmark = (e: React.MouseEvent) => {
+    // Stop the event from propagating to parent elements (Link)
+    e.stopPropagation();
+    e.preventDefault();
+    setBookmarked(!bookmarked);
   };
   
   return (
@@ -93,7 +104,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
               src={bookmarkImage}
               alt="Bookmark"
               className={`aspect-[1] object-contain w-5 shrink-0 hover:opacity-80 transition-opacity ${bookmarked ? 'filter brightness-0 saturate-100 invert-[22%] sepia-[99%] saturate-[7451%] hue-rotate-[93deg] brightness-[96%] contrast-[110%]' : ''}`}
-              onClick={() => setBookmarked(!bookmarked)}
+              onClick={handleBookmark}
             />
           </div>
           <div
@@ -114,7 +125,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
                   src={upvoteImage}
                   alt="Upvote"
                   className={`aspect-[0.87] object-contain w-full hover:opacity-80 transition-opacity cursor-pointer ${voted === 'up' ? 'filter brightness-0 saturate-100 invert-[22%] sepia-[99%] saturate-[7451%] hue-rotate-[93deg] brightness-[96%] contrast-[110%]' : ''}`}
-                  onClick={() => handleVote('up')}
+                  onClick={(e) => handleVote('up', e)}
                 />
                 <div className={`mt-1.5 ${voted === 'up' ? 'text-green-500' : (voted === 'down' ? 'text-red-500' : '')}`}>{votes}</div>
               </div>
@@ -124,7 +135,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
                   src={downvoteImage}
                   alt="Downvote"
                   className={`aspect-[0.87] object-contain w-5 self-stretch my-auto hover:opacity-80 transition-opacity cursor-pointer ${voted === 'down' ? 'filter brightness-0 saturate-100 invert-[15%] sepia-[96%] saturate-[7499%] hue-rotate-[350deg] brightness-[103%] contrast-[104%]' : ''}`}
-                  onClick={() => handleVote('down')}
+                  onClick={(e) => handleVote('down', e)}
                 />
               </div>
             </div>

@@ -30,11 +30,11 @@ const QuestionHeader: React.FC<QuestionHeaderProps> = ({
   // Map categoryType to its corresponding background color
   const getBgColor = (type: string) => {
     switch (type) {
-      case 'freizeit': return 'bg-blue-900';
-      case 'verkehr': return 'bg-green-900';
-      case 'politik': return 'bg-purple-900';
-      case 'wohnen': return 'bg-yellow-900';
-      default: return 'bg-blue-900';
+      case 'freizeit': return 'bg-freizeit';
+      case 'verkehr': return 'bg-verkehr';
+      case 'politik': return 'bg-politik';
+      case 'wohnen': return 'bg-wohnen';
+      default: return 'bg-freizeit';
     }
   };
 
