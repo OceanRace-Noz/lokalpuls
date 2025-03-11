@@ -12,7 +12,7 @@ import HamburgerMenu from "@/components/home/HamburgerMenu";
 
 const Index: React.FC = () => {
   return (
-    <main className="bg-[rgba(242,242,242,1)] flex max-w-[480px] w-full flex-col items-stretch mx-auto pb-[15px] px-1.5 font-dongle">
+    <main className="bg-[rgba(242,242,242,1)] flex max-w-full w-full flex-col items-stretch mx-auto pb-[15px] px-1.5 md:px-4 font-dongle">
       <div className="bg-[rgba(44,44,44,1)] flex shrink-0 h-[167px]" />
       <div className="z-10 flex mt-[-167px] flex-col items-center">
         <div className="items-stretch self-stretch bg-[#2C2C2C] flex w-full flex-col pb-2.5">
@@ -20,20 +20,20 @@ const Index: React.FC = () => {
           <TopicsList />
         </div>
 
-        <section className="w-[335px] max-w-full mt-[46px]">
-          <h2 className="text-[rgba(57,57,57,1)] text-xl font-normal leading-none">
+        <section className="w-[335px] md:w-[600px] lg:w-[800px] max-w-full mt-[46px]">
+          <h2 className="text-[rgba(57,57,57,1)] text-xl md:text-2xl font-normal leading-none">
             Entdecke die{" "}
             <span className="font-semibold">spannendsten Fragen</span> aus
             deiner Region
           </h2>
-          <p className="text-[#393939] text-[13px] font-light leading-[15px] mt-3">
+          <p className="text-[#393939] text-[13px] md:text-base font-light leading-[15px] md:leading-relaxed mt-3">
             Hier stellen Bewohner die Fragen, die uns alle betreffen. Sei dabei,
             beteilige dich und erfahre, was in denier Region wirklich wichtig
             ist.
           </p>
         </section>
 
-        <div className="flex w-full max-w-[359px] flex-col items-stretch mt-[46px]">
+        <div className="flex w-full max-w-[359px] md:max-w-[600px] lg:max-w-[800px] flex-col items-stretch mt-[46px]">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1.5">
               <button className="items-center shadow-[0px_1px_2px_0px_rgba(0,0,0,0.30),0px_1px_3px_1px_rgba(0,0,0,0.15)] bg-[#F6F6F6] self-stretch flex justify-center w-[30px] h-[30px] p-1.5 rounded-[3px] hover:bg-[#E8E8E8] active:scale-95 transition-all">
@@ -60,7 +60,7 @@ const Index: React.FC = () => {
             </Link>
           </div>
 
-          <div className="flex w-full flex-col items-stretch mt-[19px]">
+          <div className="flex w-full flex-col md:grid md:grid-cols-1 lg:grid-cols-2 gap-6 mt-[19px]">
             <Link to="/question/indoor-activities" className="block hover:opacity-95 transition-opacity">
               <QuestionCard
                 title="Indoor-Aktivitäten in Melle"
@@ -82,7 +82,9 @@ const Index: React.FC = () => {
               />
             </Link>
 
-            <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/484ca79a89bcb7bc652da7fccb68a544bf52aad5c7d239c975b4dd674854a32b?placeholderIfAbsent=true" />
+            <div className="md:hidden">
+              <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/484ca79a89bcb7bc652da7fccb68a544bf52aad5c7d239c975b4dd674854a32b?placeholderIfAbsent=true" />
+            </div>
 
             <Link to="/question/street-construction" className="block hover:opacity-95 transition-opacity">
               <QuestionCard
@@ -105,7 +107,9 @@ const Index: React.FC = () => {
               />
             </Link>
 
-            <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/484ca79a89bcb7bc652da7fccb68a544bf52aad5c7d239c975b4dd674854a32b?placeholderIfAbsent=true" />
+            <div className="md:hidden">
+              <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/484ca79a89bcb7bc652da7fccb68a544bf52aad5c7d239c975b4dd674854a32b?placeholderIfAbsent=true" />
+            </div>
 
             <Link to="/question/political-participation" className="block hover:opacity-95 transition-opacity">
               <QuestionCard
@@ -128,11 +132,17 @@ const Index: React.FC = () => {
               />
             </Link>
 
-            <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/484ca79a89bcb7bc652da7fccb68a544bf52aad5c7d239c975b4dd674854a32b?placeholderIfAbsent=true" />
+            <div className="md:hidden">
+              <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/484ca79a89bcb7bc652da7fccb68a544bf52aad5c7d239c975b4dd674854a32b?placeholderIfAbsent=true" />
+            </div>
 
-            <AskQuestionForm />
+            <div className="md:col-span-1 lg:col-span-2">
+              <AskQuestionForm />
+            </div>
 
-            <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/0a5597e7d9ed1ca2f00cb2a9b4b611d0302d82b11db4b7a2c3368f419a676569?placeholderIfAbsent=true" />
+            <div className="md:hidden">
+              <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/0a5597e7d9ed1ca2f00cb2a9b4b611d0302d82b11db4b7a2c3368f419a676569?placeholderIfAbsent=true" />
+            </div>
 
             <Link to="/question/best-districts" className="block hover:opacity-95 transition-opacity">
               <QuestionCard
@@ -155,13 +165,21 @@ const Index: React.FC = () => {
               />
             </Link>
 
-            <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/11f66f0a860665edab25c3f9d7c135a2f6e51c4256dfda7817eb95fded088445?placeholderIfAbsent=true" />
+            <div className="md:hidden">
+              <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/11f66f0a860665edab25c3f9d7c135a2f6e51c4256dfda7817eb95fded088445?placeholderIfAbsent=true" />
+            </div>
 
-            <OpinionPoll />
+            <div className="md:col-span-1 lg:col-span-2">
+              <OpinionPoll />
+            </div>
 
-            <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/b213d8d2d9b61ef93360dfacd418fb64e7b41d76c92c3e72ec01dcb7b526f37e?placeholderIfAbsent=true" />
+            <div className="md:hidden">
+              <Divider imageSrc="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/b213d8d2d9b61ef93360dfacd418fb64e7b41d76c92c3e72ec01dcb7b526f37e?placeholderIfAbsent=true" />
+            </div>
 
-            <WeeklyQuestion />
+            <div className="md:col-span-1 lg:col-span-2">
+              <WeeklyQuestion />
+            </div>
           </div>
         </div>
       </div>

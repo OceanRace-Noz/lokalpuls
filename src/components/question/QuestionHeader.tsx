@@ -58,18 +58,18 @@ const QuestionHeader: React.FC<QuestionHeaderProps> = ({
         </Link>
       </div>
       
-      <div className={`${getBgColor(question.categoryType)} rounded-lg p-4 shadow-md animate-scale-in`}>
+      <div className={`${getBgColor(question.categoryType)} rounded-lg p-4 md:p-6 shadow-md animate-scale-in max-w-full md:max-w-4xl mx-auto`}>
         <div className="mb-3 flex items-center">
           <div className={`${getTagColor(question.categoryType)} text-white text-xs px-2 py-1 rounded inline-block`}>
             #{question.category}
           </div>
         </div>
         
-        <h1 className="text-3xl font-medium text-white mb-2 leading-tight">{question.title}</h1>
+        <h1 className="text-3xl md:text-4xl font-medium text-white mb-2 leading-tight">{question.title}</h1>
         
-        <p className="text-white/90 text-lg mb-4 leading-snug">{question.question}</p>
+        <p className="text-white/90 text-lg md:text-xl mb-4 leading-snug">{question.question}</p>
         
-        <div className="flex justify-between items-center mb-2">
+        <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center mb-2 gap-3 md:gap-0">
           <div className="flex items-center">
             <div className="w-8 h-8 rounded-full bg-gray-300 mr-2 overflow-hidden">
               <img 

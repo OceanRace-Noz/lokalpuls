@@ -19,7 +19,7 @@ const HamburgerMenu: React.FC = () => {
   ];
 
   return (
-    <div className="z-50">
+    <div className="z-50 md:hidden">
       <button
         onClick={toggleMenu}
         className="fixed bottom-4 right-4 bg-[#4EACE5] p-3 rounded-full shadow-md hover:bg-[#3897CE] transition-colors z-50"
