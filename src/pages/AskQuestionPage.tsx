@@ -56,7 +56,7 @@ const AskQuestionPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-[rgba(242,242,242,1)] flex max-w-[480px] w-full flex-col items-stretch mx-auto min-h-screen font-dongle">
+    <div className="bg-[rgba(242,242,242,1)] flex w-full flex-col items-stretch mx-auto min-h-screen font-dongle">
       {/* Header */}
       <div className="bg-[#2C2C2C] p-4 flex items-center justify-between sticky top-0 z-10">
         <button 
@@ -70,7 +70,7 @@ const AskQuestionPage: React.FC = () => {
       </div>
 
       {/* Form */}
-      <div className="p-4">
+      <div className="container mx-auto max-w-4xl p-4">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           {/* Title */}
           <div className="rounded-lg overflow-hidden">

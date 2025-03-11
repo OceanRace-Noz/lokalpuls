@@ -14,6 +14,9 @@ import StreetConstructionPage from "./pages/StreetConstructionPage";
 import PoliticalParticipationPage from "./pages/PoliticalParticipationPage";
 import BestDistrictsPage from "./pages/BestDistrictsPage";
 import AskQuestionPage from "./pages/AskQuestionPage";
+import YesterdayTopicsPage from "./pages/topics/YesterdayTopicsPage";
+import ThisWeekTopicsPage from "./pages/topics/ThisWeekTopicsPage";
+import ThisMonthTopicsPage from "./pages/topics/ThisMonthTopicsPage";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +36,12 @@ const App = () => (
           <Route path="/question/street-construction" element={<StreetConstructionPage />} />
           <Route path="/question/political-participation" element={<PoliticalParticipationPage />} />
           <Route path="/question/best-districts" element={<BestDistrictsPage />} />
+          
+          {/* New topic filter routes */}
+          <Route path="/topics/yesterday" element={<YesterdayTopicsPage />} />
+          <Route path="/topics/this-week" element={<ThisWeekTopicsPage />} />
+          <Route path="/topics/this-month" element={<ThisMonthTopicsPage />} />
+          
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,9 +1,16 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { User } from "lucide-react";
+import { User, ChevronDown } from "lucide-react";
+
+type City = "Melle" | "Osnabrück" | "Bramsche";
 
 const Header: React.FC = () => {
+  const [selectedCity, setSelectedCity] = useState<City>("Melle");
+  const [showCityDropdown, setShowCityDropdown] = useState(false);
+
+  const cities: City[] = ["Melle", "Osnabrück", "Bramsche"];
+
   return (
     <div className="w-full">
       <div className="w-full" data-testid="top">
@@ -42,20 +49,37 @@ const Header: React.FC = () => {
           <div className="text-[rgba(232,232,232,1)] font-medium font-league-spartan">
             Guten Morgen, <span className="font-bold">Stefan!</span>
           </div>
-          <div className="flex items-center gap-2 text-[rgba(78,172,229,1)] font-bold">
+          <div className="flex items-center gap-2 text-[rgba(78,172,229,1)] font-bold relative">
             <img
               src="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/34c18c8df71c138c3a9c219a0d2eddedd74c951d10f017f6a28b24c3b9acf487?placeholderIfAbsent=true"
               alt="Location"
               className="w-4 h-4"
             />
-            <div className="flex items-center gap-1 font-league-spartan">
-              <div>Melle</div>
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/451932fcf0ca91185692e62932f8b1e82ee0647b1ea7838a8722d5ad8711b419?placeholderIfAbsent=true"
-                alt="Arrow"
-                className="w-4 h-4"
-              />
+            <div 
+              className="flex items-center gap-1 font-league-spartan cursor-pointer"
+              onClick={() => setShowCityDropdown(!showCityDropdown)}
+            >
+              <div>{selectedCity}</div>
+              <ChevronDown size={16} className={`transition-transform ${showCityDropdown ? 'rotate-180' : ''}`} />
             </div>
+            
+            {/* City Dropdown */}
+            {showCityDropdown && (
+              <div className="absolute top-full left-0 mt-2 bg-white shadow-md rounded-md z-20 min-w-[150px]">
+                {cities.map((city) => (
+                  <div 
+                    key={city}
+                    className={`px-4 py-2 hover:bg-gray-100 cursor-pointer ${selectedCity === city ? 'text-[rgba(78,172,229,1)]' : 'text-gray-800'}`}
+                    onClick={() => {
+                      setSelectedCity(city);
+                      setShowCityDropdown(false);
+                    }}
+                  >
+                    {city}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
