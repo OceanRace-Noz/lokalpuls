@@ -1,6 +1,7 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { ThumbsUp, Trash2 } from "lucide-react";
+import { toast } from "@/components/ui/use-toast";
 
 interface Answer {
   id?: number;
@@ -18,11 +19,46 @@ interface AnswersListProps {
 }
 
 const AnswersList: React.FC<AnswersListProps> = ({ 
-  answers, 
+  answers: initialAnswers, 
   answerCount, 
   onDeleteAnswer,
   currentUser = "Du" // Default to "Du" as the current user
 }) => {
+  const [answers, setAnswers] = useState(initialAnswers);
+  const [likedAnswers, setLikedAnswers] = useState<Record<string, boolean>>({});
+
+  const handleLike = (answerId: number | undefined) => {
+    if (!answerId) return;
+    
+    // Toggle liked state
+    const isLiked = likedAnswers[String(answerId)];
+    const newLikedAnswers = {
+      ...likedAnswers,
+      [String(answerId)]: !isLiked
+    };
+    setLikedAnswers(newLikedAnswers);
+    
+    // Update answer likes count
+    const updatedAnswers = answers.map(answer => {
+      if (answer.id === answerId) {
+        return {
+          ...answer,
+          likes: isLiked ? answer.likes - 1 : answer.likes + 1
+        };
+      }
+      return answer;
+    });
+    
+    setAnswers(updatedAnswers);
+    
+    // Show toast notification
+    toast({
+      title: isLiked ? "Like entfernt" : "Beitrag geliked",
+      description: isLiked ? "Du hast deinen Like zurückgezogen." : "Du hast diesen Beitrag geliked.",
+      duration: 1500,
+    });
+  };
+
   return (
     <>
       <h2 className="text-2xl font-medium mb-4">Antworten ({answerCount})</h2>
@@ -55,7 +91,11 @@ const AnswersList: React.FC<AnswersListProps> = ({
             </div>
             <p className="text-gray-800 text-lg leading-snug">{answer.content}</p>
             <div className="flex items-center mt-2 text-sm text-gray-500">
-              <button className="flex items-center hover:text-[#4EACE5] transition-colors">
+              <button 
+                className={`flex items-center transition-colors ${likedAnswers[String(answer.id)] ? 'text-[#4EACE5]' : 'hover:text-[#4EACE5]'}`}
+                onClick={() => handleLike(answer.id)}
+                aria-label={likedAnswers[String(answer.id)] ? "Like entfernen" : "Beitrag liken"}
+              >
                 <ThumbsUp size={14} className="mr-1" />
                 <span>{answer.likes}</span>
               </button>
