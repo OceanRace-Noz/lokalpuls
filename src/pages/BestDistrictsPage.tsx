@@ -100,14 +100,14 @@ const BestDistrictsPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-[rgba(242,242,242,1)] flex max-w-[480px] w-full flex-col items-stretch mx-auto pb-[15px] px-1.5 font-dongle min-h-screen">
+    <div className="bg-[rgba(242,242,242,1)] flex w-full flex-col items-stretch mx-auto pb-[15px] font-dongle min-h-screen">
       <div className="bg-[linear-gradient(180deg,_#292504_0%,_#483704_100%)] flex shrink-0 h-[167px]" />
-      <div className="z-10 flex mt-[-167px] flex-col items-center">
+      <div className="z-10 flex mt-[-167px] flex-col items-center w-full">
         <div className="items-stretch self-stretch bg-[#2C2C2C] flex w-full flex-col pb-2.5">
           <Header />
         </div>
         
-        <div className="w-full max-w-[359px] mt-4">
+        <div className="container mx-auto max-w-4xl px-4 mt-4">
           <QuestionHeader 
             question={question}
             voteStatus={voteStatus}
