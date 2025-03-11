@@ -1,4 +1,3 @@
-
 // Example data - in a real app this would come from an API
 export const questionsData = {
   "1": {
@@ -181,7 +180,8 @@ export const questionsData = {
         date: "Vor 5 Tagen"
       }
     ]
-  }
+  },
+  "user-questions": {}
 };
 
 // Simulates fetching a question by ID
@@ -219,3 +219,67 @@ export const voteOnQuestion = (questionId: string, voteType: 'up' | 'down'): Pro
     }, 200);
   });
 };
+
+// New function to submit a question
+export const submitQuestion = (
+  title: string, 
+  question: string, 
+  categoryType: string
+): Promise<{ id: string }> => {
+  return new Promise((resolve) => {
+    console.log("Submitting question:", { title, question, categoryType });
+    
+    // Generate a unique ID for the question
+    const id = `user-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+    
+    // Map category type to color and name
+    let categoryName = "";
+    let categoryColor = "";
+    
+    switch(categoryType) {
+      case "freizeit":
+        categoryName = "Freizeit";
+        categoryColor = "#1F45CD";
+        break;
+      case "verkehr":
+        categoryName = "Verkehr";
+        categoryColor = "rgba(10,157,47,1)";
+        break;
+      case "politik":
+        categoryName = "Politik";
+        categoryColor = "rgba(209,44,155,1)";
+        break;
+      case "wohnen":
+        categoryName = "Wohnen";
+        categoryColor = "rgba(229,146,78,1)";
+        break;
+    }
+    
+    // Create the new question object
+    const newQuestion = {
+      id,
+      title,
+      category: categoryName,
+      categoryColor,
+      categoryType,
+      question,
+      votes: 0,
+      answerCount: 0,
+      viewCount: 1,
+      userName: "Du", // In a real app, this would be the user's name
+      userImage: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/78ef9f482949556fee014507c039900929e56aec43812f80c22465d974722768?placeholderIfAbsent=true",
+      answers: []
+    };
+    
+    // Add to our "database"
+    (questionsData as any)["user-questions"][id] = newQuestion;
+    console.log("Question submitted:", newQuestion);
+    console.log("All questions:", questionsData);
+    
+    // Simulate server delay
+    setTimeout(() => {
+      resolve({ id });
+    }, 800);
+  });
+};
+

@@ -13,6 +13,7 @@ import IndoorActivitiesPage from "./pages/IndoorActivitiesPage";
 import StreetConstructionPage from "./pages/StreetConstructionPage";
 import PoliticalParticipationPage from "./pages/PoliticalParticipationPage";
 import BestDistrictsPage from "./pages/BestDistrictsPage";
+import AskQuestionPage from "./pages/AskQuestionPage";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/ask" element={<AskQuestionPage />} />
           <Route path="/question/:id" element={<QuestionDetail />} />
           <Route path="/question/weekly" element={<WeeklyQuestionPage />} />
           <Route path="/question/indoor-activities" element={<IndoorActivitiesPage />} />

@@ -1,7 +1,11 @@
 
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "@/hooks/use-toast";
+import { submitQuestion } from "@/services/questionService";
 
 const AskQuestionForm: React.FC = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [question, setQuestion] = useState("");
   const [category, setCategory] = useState("");
@@ -9,17 +13,40 @@ const AskQuestionForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!title || !question || !category) {
+      toast({
+        title: "Fehlende Informationen",
+        description: "Bitte fülle alle Felder aus."
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
     
-    // Simulate sending the form
-    setTimeout(() => {
-      console.log({ title, question, category });
-      // Reset form
-      setTitle("");
-      setQuestion("");
-      setCategory("");
-      setIsSubmitting(false);
-    }, 1000);
+    // Submit to our question service
+    submitQuestion(title, question, category)
+      .then(() => {
+        toast({
+          title: "Frage gesendet!",
+          description: "Deine Frage wurde erfolgreich gesendet."
+        });
+        // Reset form
+        setTitle("");
+        setQuestion("");
+        setCategory("");
+      })
+      .catch((error) => {
+        console.error("Error submitting question:", error);
+        toast({
+          title: "Fehler",
+          description: "Beim Senden deiner Frage ist ein Fehler aufgetreten.",
+          variant: "destructive"
+        });
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   return (

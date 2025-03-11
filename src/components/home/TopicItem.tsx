@@ -29,7 +29,7 @@ const TopicItem: React.FC<TopicItemProps> = ({ topic, index, isLast }) => {
   };
 
   return (
-    <React.Fragment>
+    <>
       <div className="flex flex-col w-full">
         <Link 
           to={getTopicRoute(topic.categoryType, topic.id)}
@@ -62,7 +62,7 @@ const TopicItem: React.FC<TopicItemProps> = ({ topic, index, isLast }) => {
         className="aspect-[333.33] object-contain w-full mt-3"
       />
       {!isLast && <div className="mt-3"></div>}
-    </React.Fragment>
+    </>
   );
 };
 
