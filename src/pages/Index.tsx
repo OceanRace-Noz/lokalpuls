@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/home/Header";
@@ -13,13 +12,13 @@ const Index: React.FC = () => {
   return (
     <main className="bg-[rgba(242,242,242,1)] flex max-w-full w-full flex-col items-stretch mx-auto pb-[15px] font-dongle">
       <div className="bg-[rgba(44,44,44,1)] flex shrink-0 h-[167px]" />
-      <div className="z-10 flex mt-[-167px] flex-col items-center">
+      <div className="z-10 flex mt-[-167px] flex-col items-center w-full">
         <div className="items-stretch self-stretch bg-[#2C2C2C] flex w-full flex-col pb-2.5">
           <Header />
           <TopicsList />
         </div>
 
-        <div className="container mx-auto px-4 mt-12">
+        <div className="container mx-auto max-w-4xl px-4 mt-12">
           <section className="max-w-2xl mb-12">
             <h2 className="text-[rgba(57,57,57,1)] text-xl md:text-2xl font-normal leading-none">
               Entdecke die{" "}

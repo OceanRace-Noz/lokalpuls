@@ -103,7 +103,7 @@ const TopicsList: React.FC = () => {
   };
 
   return (
-    <div className="self-center flex w-[335px] max-w-full flex-col items-stretch mt-[17px]">
+    <div className="container mx-auto max-w-4xl px-4">
       <div className="w-full">
         <div className="text-[rgba(219,219,219,1)] text-base font-medium font-league-spartan">
           Das beschäftigt Melle
@@ -113,7 +113,7 @@ const TopicsList: React.FC = () => {
           onFilterChange={handleFilterChange} 
         />
       </div>
-      <div className="self-center w-[311px] max-w-full font-normal mt-[30px]">
+      <div className="w-full font-normal mt-[30px]">
         <div className="w-full">
           {topics.map((topic, index) => (
             <TopicItem 

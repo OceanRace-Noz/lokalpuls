@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { User } from "lucide-react";
@@ -7,7 +8,7 @@ const Header: React.FC = () => {
     <div className="w-full">
       <div className="w-full" data-testid="top">
         <div className="bg-[#2C2C2C] w-full">
-          <div className="container mx-auto justify-between items-center bg-[#2C2C2C] flex min-h-[50px] gap-[40px_100px] px-4">
+          <div className="flex justify-between items-center bg-[#2C2C2C] min-h-[50px] px-4">
             <div className="flex items-center gap-2 text-lg text-[rgba(246,246,246,1)] font-bold">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/32dbd905763e5af50c7069e025a965892f32ba851790801ea973110566f51451?placeholderIfAbsent=true"
@@ -37,7 +38,7 @@ const Header: React.FC = () => {
         </div>
       </div>
       <div className="bg-[#2C2C2C] w-full">
-        <div className="container mx-auto px-4 py-4 space-y-4">
+        <div className="container mx-auto max-w-4xl px-4 py-4 space-y-4">
           <div className="text-[rgba(232,232,232,1)] font-medium font-league-spartan">
             Guten Morgen, <span className="font-bold">Stefan!</span>
           </div>
