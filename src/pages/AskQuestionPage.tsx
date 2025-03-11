@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
 import { X, Image, Send } from "lucide-react";
+import { submitQuestion } from "@/services/questionService";
 
 const AskQuestionPage: React.FC = () => {
   const navigate = useNavigate();
