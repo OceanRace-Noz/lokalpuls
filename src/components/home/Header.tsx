@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ onCityChange }) => {
     <div className="w-full">
       <div className="w-full" data-testid="top">
         <div className="bg-[#2C2C2C] w-full">
-          <div className="flex justify-between items-center bg-[#2C2C2C] min-h-[50px] px-4">
+          <div className="flex justify-between items-center bg-[#2C2C2C] min-h-[50px] px-4 max-w-4xl mx-auto">
             <div className="flex items-center gap-2 text-lg text-[rgba(246,246,246,1)] font-bold">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/32dbd905763e5af50c7069e025a965892f32ba851790801ea973110566f51451?placeholderIfAbsent=true"

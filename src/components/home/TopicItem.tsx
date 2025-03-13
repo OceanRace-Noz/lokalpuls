@@ -49,7 +49,7 @@ const TopicItem: React.FC<TopicItemProps> = ({ topic, index, isLast }) => {
               {topic.title}
             </div>
           </div>
-          <div className="flex-shrink-0">
+          <div className="ml-2">
             <img
               src={topic.icon}
               alt="Icon"

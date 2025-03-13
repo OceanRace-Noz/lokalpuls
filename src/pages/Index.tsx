@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Filter, ArrowDownAZ } from "lucide-react";
@@ -45,10 +44,11 @@ const Index: React.FC = () => {
       <div className="z-10 flex mt-[-167px] flex-col items-center w-full flex-grow">
         <div className="items-stretch self-stretch bg-[#2C2C2C] flex w-full flex-col pb-2.5">
           <Header onCityChange={handleCityChange} />
+          <div className="mt-4"></div>
           <TopicsList selectedCity={selectedCity} />
         </div>
 
-        <div className="container mx-auto max-w-4xl px-4 mt-12">
+        <div className="container mx-auto max-w-4xl px-4 mt-16">
           <section className="max-w-2xl mb-12">
             <h2 className="text-[rgba(57,57,57,1)] text-xl md:text-2xl font-normal leading-none">
               Entdecke die{" "}
@@ -88,9 +88,7 @@ const Index: React.FC = () => {
             </Link>
           </div>
 
-          {/* Bento Grid Layout */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Main Questions - Span 2 columns on larger screens */}
             <div className="md:col-span-2 space-y-6">
               <Link to="/question/indoor-activities" className="block hover:opacity-95 transition-opacity">
                 <QuestionCard
@@ -135,18 +133,15 @@ const Index: React.FC = () => {
               </Link>
             </div>
 
-            {/* Sidebar content */}
             <div className="space-y-6">
               <WeeklyQuestion />
               <OpinionPoll />
             </div>
 
-            {/* Full width section */}
             <div className="md:col-span-2 lg:col-span-3">
               <AskQuestionForm />
             </div>
 
-            {/* Additional questions */}
             <Link to="/question/political-participation" className="block hover:opacity-95 transition-opacity md:col-span-2">
               <QuestionCard
                 title={`Politische Teilhabe für Jugendliche in ${selectedCity}`}
