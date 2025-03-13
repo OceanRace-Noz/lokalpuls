@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { toast } from "@/components/ui/use-toast";
 import { Topic, TimeFilterOption } from "@/types/topic";
@@ -225,30 +224,190 @@ const thisMonthTopics: Topic[] = [
   },
 ];
 
-const TopicsList: React.FC = () => {
+// Osnabrück topics data
+const osnabrueckTopics: Record<TimeFilterOption, Topic[]> = {
+  "Heute": [
+    {
+      id: "o1",
+      number: "#1",
+      title: '"Wo ist der beste Biergarten?"',
+      color: "#7bb2e6",
+      icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/a34f267e9417cb7bcef73766c2d0d6c4d4f52da54a64e521c97ace0688881644?placeholderIfAbsent=true",
+      categoryType: "freizeit",
+      category: "Freizeit",
+    },
+    {
+      id: "o2",
+      number: "#2",
+      title: '"Studentenwohnungen gesucht"',
+      color: "#B984C8",
+      icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/28ed1209a7f3ee11bedd572f537d8d78df26d625e4a3d4c537c3f9b1da240796?placeholderIfAbsent=true",
+      categoryType: "wohnen",
+      category: "Wohnen",
+    },
+    {
+      id: "o3",
+      number: "#3",
+      title: '"Verkehr am Neumarkt"',
+      color: "#6AC04B",
+      icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/df9a1fdbc59f9318b4a910bb577c7e13900738e2bb906a094a49bd3dea1d821d?placeholderIfAbsent=true",
+      categoryType: "verkehr",
+      category: "Verkehr",
+    },
+    {
+      id: "o4",
+      number: "#4",
+      title: '"Stadtfest Planung"',
+      color: "#D37B7D",
+      icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/a75d79a3a85805474216b8881e8bda389fce214d7557bb9849df138e7b568d1a?placeholderIfAbsent=true",
+      categoryType: "politik",
+      category: "Politik",
+    },
+    {
+      id: "o5",
+      number: "#5",
+      title: '"Zoo Eintrittspreise"',
+      color: "#7bb2e6",
+      icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/a34f267e9417cb7bcef73766c2d0d6c4d4f52da54a64e521c97ace0688881644?placeholderIfAbsent=true",
+      categoryType: "freizeit",
+      category: "Freizeit",
+    },
+  ],
+  "Gestern": [
+    {
+      id: "oy1",
+      number: "#1",
+      title: '"Museum Eröffnung"',
+      color: "#7bb2e6",
+      icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/a34f267e9417cb7bcef73766c2d0d6c4d4f52da54a64e521c97ace0688881644?placeholderIfAbsent=true",
+      categoryType: "freizeit",
+      category: "Freizeit",
+    },
+  ],
+  "Diese Woche": [
+    {
+      id: "ow1",
+      number: "#1",
+      title: '"Baustelle Hauptbahnhof"',
+      color: "#6AC04B",
+      icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/df9a1fdbc59f9318b4a910bb577c7e13900738e2bb906a094a49bd3dea1d821d?placeholderIfAbsent=true",
+      categoryType: "verkehr",
+      category: "Verkehr",
+    },
+  ],
+  "Diesen Monat": [
+    {
+      id: "om1",
+      number: "#1",
+      title: '"Neue Radwege"',
+      color: "#6AC04B",
+      icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/df9a1fdbc59f9318b4a910bb577c7e13900738e2bb906a094a49bd3dea1d821d?placeholderIfAbsent=true",
+      categoryType: "verkehr",
+      category: "Verkehr",
+    },
+  ],
+};
+
+// Bramsche topics data
+const bramscheTopics: Record<TimeFilterOption, Topic[]> = {
+  "Heute": [
+    {
+      id: "b1",
+      number: "#1",
+      title: '"Tückmantel Teich angeln"',
+      color: "#7bb2e6",
+      icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/a34f267e9417cb7bcef73766c2d0d6c4d4f52da54a64e521c97ace0688881644?placeholderIfAbsent=true",
+      categoryType: "freizeit",
+      category: "Freizeit",
+    },
+    {
+      id: "b2",
+      number: "#2",
+      title: '"Neuer Kreisverkehr"',
+      color: "#6AC04B",
+      icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/df9a1fdbc59f9318b4a910bb577c7e13900738e2bb906a094a49bd3dea1d821d?placeholderIfAbsent=true",
+      categoryType: "verkehr",
+      category: "Verkehr",
+    },
+    {
+      id: "b3",
+      number: "#3",
+      title: '"Sanierung Grundschule"',
+      color: "#D37B7D",
+      icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/a75d79a3a85805474216b8881e8bda389fce214d7557bb9849df138e7b568d1a?placeholderIfAbsent=true",
+      categoryType: "politik",
+      category: "Politik",
+    },
+  ],
+  "Gestern": [
+    {
+      id: "by1",
+      number: "#1",
+      title: '"Varusschlacht Museum"',
+      color: "#7bb2e6",
+      icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/a34f267e9417cb7bcef73766c2d0d6c4d4f52da54a64e521c97ace0688881644?placeholderIfAbsent=true",
+      categoryType: "freizeit",
+      category: "Freizeit",
+    },
+  ],
+  "Diese Woche": [
+    {
+      id: "bw1",
+      number: "#1",
+      title: '"Freibad Öffnungszeiten"',
+      color: "#7bb2e6",
+      icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/a34f267e9417cb7bcef73766c2d0d6c4d4f52da54a64e521c97ace0688881644?placeholderIfAbsent=true",
+      categoryType: "freizeit",
+      category: "Freizeit",
+    },
+  ],
+  "Diesen Monat": [
+    {
+      id: "bm1",
+      number: "#1",
+      title: '"Wohnungsangebote"',
+      color: "#B984C8",
+      icon: "https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/28ed1209a7f3ee11bedd572f537d8d78df26d625e4a3d4c537c3f9b1da240796?placeholderIfAbsent=true",
+      categoryType: "wohnen",
+      category: "Wohnen",
+    },
+  ],
+};
+
+// Map city names to topic data
+const cityTopics: Record<string, Record<TimeFilterOption, Topic[]>> = {
+  "Melle": {
+    "Heute": todayTopics,
+    "Gestern": yesterdayTopics,
+    "Diese Woche": thisWeekTopics,
+    "Diesen Monat": thisMonthTopics,
+  },
+  "Osnabrück": osnabrueckTopics,
+  "Bramsche": bramscheTopics,
+};
+
+interface TopicsListProps {
+  selectedCity?: string;
+}
+
+const TopicsList: React.FC<TopicsListProps> = ({ selectedCity = "Melle" }) => {
   const [selectedFilter, setSelectedFilter] = useState<TimeFilterOption>("Heute");
   const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
   const [currentTopics, setCurrentTopics] = useState<Topic[]>(todayTopics);
 
-  const getTopicsForFilter = (filter: TimeFilterOption): Topic[] => {
-    switch (filter) {
-      case "Heute":
-        return todayTopics;
-      case "Gestern":
-        return yesterdayTopics;
-      case "Diese Woche":
-        return thisWeekTopics;
-      case "Diesen Monat":
-        return thisMonthTopics;
-      default:
-        return todayTopics;
-    }
+  useEffect(() => {
+    updateTopicsForCity(selectedCity, selectedFilter);
+  }, [selectedCity, selectedFilter]);
+
+  const updateTopicsForCity = (city: string, filter: TimeFilterOption) => {
+    const cityData = cityTopics[city] || cityTopics["Melle"];
+    const topics = cityData[filter] || [];
+    setCurrentTopics(topics);
   };
 
   const handleFilterChange = (filter: TimeFilterOption) => {
     setSelectedFilter(filter);
-    const topics = getTopicsForFilter(filter);
-    setCurrentTopics(topics);
+    updateTopicsForCity(selectedCity, filter);
     // Reset expanded topic when changing filters
     setExpandedTopic(null);
   };
@@ -273,12 +432,10 @@ const TopicsList: React.FC = () => {
   return (
     <div className="container mx-auto max-w-4xl px-4">
       <div className="w-full">
-        <div className="text-[rgba(219,219,219,1)] text-base font-medium font-league-spartan">
-          Das beschäftigt Melle
-        </div>
         <TimeFilter 
           selectedFilter={selectedFilter} 
-          onFilterChange={handleFilterChange} 
+          onFilterChange={handleFilterChange}
+          city={selectedCity}
         />
       </div>
       <div className="w-full font-normal mt-[30px]">
@@ -292,7 +449,7 @@ const TopicsList: React.FC = () => {
             />
           ))}
         </div>
-        <div className="text-[rgba(219,219,219,1)] text-lg text-center mt-[5px] cursor-pointer hover:underline transition-all duration-200">
+        <div className="text-[rgba(219,219,219,1)] text-lg text-left mt-[5px] cursor-pointer hover:underline transition-all duration-200">
           Alle ansehen
         </div>
       </div>

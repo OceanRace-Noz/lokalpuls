@@ -5,11 +5,23 @@ import { User, ChevronDown } from "lucide-react";
 
 type City = "Melle" | "Osnabrück" | "Bramsche";
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onCityChange?: (city: City) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onCityChange }) => {
   const [selectedCity, setSelectedCity] = useState<City>("Melle");
   const [showCityDropdown, setShowCityDropdown] = useState(false);
 
   const cities: City[] = ["Melle", "Osnabrück", "Bramsche"];
+
+  const handleCityChange = (city: City) => {
+    setSelectedCity(city);
+    setShowCityDropdown(false);
+    if (onCityChange) {
+      onCityChange(city);
+    }
+  };
 
   return (
     <div className="w-full">
@@ -70,10 +82,7 @@ const Header: React.FC = () => {
                   <div 
                     key={city}
                     className={`px-4 py-2 hover:bg-gray-100 cursor-pointer ${selectedCity === city ? 'text-[rgba(78,172,229,1)]' : 'text-gray-800'}`}
-                    onClick={() => {
-                      setSelectedCity(city);
-                      setShowCityDropdown(false);
-                    }}
+                    onClick={() => handleCityChange(city)}
                   >
                     {city}
                   </div>

@@ -1,6 +1,7 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Filter, ArrowDownAZ } from "lucide-react";
 import Header from "@/components/home/Header";
 import TopicsList from "@/components/home/TopicsList";
 import QuestionCard from "@/components/home/QuestionCard";
@@ -9,15 +10,42 @@ import OpinionPoll from "@/components/home/OpinionPoll";
 import WeeklyQuestion from "@/components/home/WeeklyQuestion";
 import HamburgerMenu from "@/components/home/HamburgerMenu";
 import Footer from "@/components/home/Footer";
+import { toast } from "@/components/ui/use-toast";
+
+type City = "Melle" | "Osnabrück" | "Bramsche";
 
 const Index: React.FC = () => {
+  const [selectedCity, setSelectedCity] = useState<City>("Melle");
+  
+  const handleCityChange = (city: City) => {
+    setSelectedCity(city);
+    toast({
+      title: "Stadt geändert",
+      description: `Du siehst jetzt Inhalte aus ${city}`,
+    });
+  };
+  
+  const handleFilterClick = () => {
+    toast({
+      title: "Filter",
+      description: "Filteroptionen werden bald verfügbar sein",
+    });
+  };
+  
+  const handleSortClick = () => {
+    toast({
+      title: "Sortieren",
+      description: "Sortieroptionen werden bald verfügbar sein",
+    });
+  };
+
   return (
     <main className="bg-[rgba(242,242,242,1)] flex max-w-full w-full flex-col items-stretch mx-auto min-h-screen font-dongle">
       <div className="bg-[rgba(44,44,44,1)] flex shrink-0 h-[167px]" />
       <div className="z-10 flex mt-[-167px] flex-col items-center w-full flex-grow">
         <div className="items-stretch self-stretch bg-[#2C2C2C] flex w-full flex-col pb-2.5">
-          <Header />
-          <TopicsList />
+          <Header onCityChange={handleCityChange} />
+          <TopicsList selectedCity={selectedCity} />
         </div>
 
         <div className="container mx-auto max-w-4xl px-4 mt-12">
@@ -25,30 +53,30 @@ const Index: React.FC = () => {
             <h2 className="text-[rgba(57,57,57,1)] text-xl md:text-2xl font-normal leading-none">
               Entdecke die{" "}
               <span className="font-semibold">spannendsten Fragen</span> aus
-              deiner Region
+              {selectedCity !== "Melle" ? ` ${selectedCity}` : " deiner Region"}
             </h2>
             <p className="text-[#393939] text-[13px] md:text-base font-light leading-[15px] md:leading-relaxed mt-3">
               Hier stellen Bewohner die Fragen, die uns alle betreffen. Sei dabei,
-              beteilige dich und erfahre, was in denier Region wirklich wichtig
+              beteilige dich und erfahre, was in {selectedCity !== "Melle" ? `${selectedCity}` : "deiner Region"} wirklich wichtig
               ist.
             </p>
           </section>
 
           <div className="flex items-center gap-4 mb-6">
             <div className="flex items-center gap-1.5">
-              <button className="items-center shadow-[0px_1px_2px_0px_rgba(0,0,0,0.30),0px_1px_3px_1px_rgba(0,0,0,0.15)] bg-[#F6F6F6] flex justify-center w-[30px] h-[30px] p-1.5 rounded-[3px] hover:bg-[#E8E8E8] active:scale-95 transition-all">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/960e1638245b5ae3ed20073cc229a9cf88687c57a47e9387385739758545fa36?placeholderIfAbsent=true"
-                  alt="Filter"
-                  className="w-full h-full object-contain"
-                />
+              <button 
+                className="items-center shadow-[0px_1px_2px_0px_rgba(0,0,0,0.30),0px_1px_3px_1px_rgba(0,0,0,0.15)] bg-[#F6F6F6] flex justify-center w-[30px] h-[30px] p-1.5 rounded-[3px] hover:bg-[#E8E8E8] active:scale-95 transition-all"
+                onClick={handleFilterClick}
+                aria-label="Filter"
+              >
+                <Filter size={18} className="text-gray-700" />
               </button>
-              <button className="items-center shadow-[0px_1px_2px_0px_rgba(0,0,0,0.30),0px_1px_3px_1px_rgba(0,0,0,0.15)] bg-[#F6F6F6] flex justify-center w-[30px] h-[30px] p-1.5 rounded-[3px] hover:bg-[#E8E8E8] active:scale-95 transition-all">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/f1e0e4832b879efc84310189889d1f508592804e70b32edc175f4f430b5b973e?placeholderIfAbsent=true"
-                  alt="Sort"
-                  className="w-full h-full object-contain"
-                />
+              <button 
+                className="items-center shadow-[0px_1px_2px_0px_rgba(0,0,0,0.30),0px_1px_3px_1px_rgba(0,0,0,0.15)] bg-[#F6F6F6] flex justify-center w-[30px] h-[30px] p-1.5 rounded-[3px] hover:bg-[#E8E8E8] active:scale-95 transition-all"
+                onClick={handleSortClick}
+                aria-label="Sort"
+              >
+                <ArrowDownAZ size={18} className="text-gray-700" />
               </button>
             </div>
             
@@ -66,10 +94,10 @@ const Index: React.FC = () => {
             <div className="md:col-span-2 space-y-6">
               <Link to="/question/indoor-activities" className="block hover:opacity-95 transition-opacity">
                 <QuestionCard
-                  title="Indoor-Aktivitäten in Melle"
+                  title={`Indoor-Aktivitäten in ${selectedCity}`}
                   category="#Freizeit"
                   categoryColor="#1F45CD"
-                  question="Was macht ihr in Melle an einem regnerischen Tag? Gibt es coole Indoor-Aktivitäten oder versteckte Orte, die man besuchen sollte?"
+                  question={`Was macht ihr in ${selectedCity} an einem regnerischen Tag? Gibt es coole Indoor-Aktivitäten oder versteckte Orte, die man besuchen sollte?`}
                   votes={34}
                   hasExpertAnswer={true}
                   answerCount={4}
@@ -87,10 +115,10 @@ const Index: React.FC = () => {
 
               <Link to="/question/street-construction" className="block hover:opacity-95 transition-opacity">
                 <QuestionCard
-                  title="Straßenarbeiten auf der B65"
+                  title={`Straßenarbeiten in ${selectedCity}`}
                   category="#Verkehr"
                   categoryColor="rgba(10,157,47,1)"
-                  question="Könnte das Expertenteam mir sagen, wann die Straßenarbeiten auf der B65 in Melle abgeschlossen sind? Die Umleitungen verursachen viel Verkehr, und ich würde gerne wissen, wann wir wieder mit normalem Verkehr rechnen können."
+                  question={`Könnte das Expertenteam mir sagen, wann die Straßenarbeiten in ${selectedCity} abgeschlossen sind? Die Umleitungen verursachen viel Verkehr, und ich würde gerne wissen, wann wir wieder mit normalem Verkehr rechnen können.`}
                   votes={34}
                   hasExpertAnswer={false}
                   answerCount={2}
@@ -121,10 +149,10 @@ const Index: React.FC = () => {
             {/* Additional questions */}
             <Link to="/question/political-participation" className="block hover:opacity-95 transition-opacity md:col-span-2">
               <QuestionCard
-                title="Politische Teilhabe für Jugendliche in Melle"
+                title={`Politische Teilhabe für Jugendliche in ${selectedCity}`}
                 category="#Politik"
                 categoryColor="rgba(209,44,155,1)"
-                question="Was plant die Stadt Melle, um junge Leute stärker in politische Entscheidungen einzubinden? Gibt es bereits Projekte oder Möglichkeiten, wie wir als Bürger mehr mitgestalten können?"
+                question={`Was plant die Stadt ${selectedCity}, um junge Leute stärker in politische Entscheidungen einzubinden? Gibt es bereits Projekte oder Möglichkeiten, wie wir als Bürger mehr mitgestalten können?`}
                 votes={34}
                 hasExpertAnswer={true}
                 answerCount={6}
@@ -142,10 +170,10 @@ const Index: React.FC = () => {
 
             <Link to="/question/best-districts" className="block hover:opacity-95 transition-opacity">
               <QuestionCard
-                title="Beste Stadtteile für junge Familien?"
+                title={`Beste Stadtteile für junge Familien in ${selectedCity}?`}
                 category="#Wohnen"
                 categoryColor="rgba(229,146,78,1)"
-                question="Welche Stadtteile in Melle sind am besten für junge Familien zum Wohnen?"
+                question={`Welche Stadtteile in ${selectedCity} sind am besten für junge Familien zum Wohnen?`}
                 votes={34}
                 hasExpertAnswer={true}
                 answerCount={4}
