@@ -1,6 +1,5 @@
 
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { TimeFilterOption } from "@/types/topic";
 
 interface TimeFilterProps {
@@ -14,25 +13,9 @@ const TimeFilter: React.FC<TimeFilterProps> = ({
   onFilterChange,
   city = "Melle"
 }) => {
-  const navigate = useNavigate();
-
   const handleFilterClick = (option: TimeFilterOption) => {
     onFilterChange(option);
-    
-    // Navigate to the corresponding page based on filter
-    if (option !== "Heute") {
-      switch(option) {
-        case "Gestern":
-          navigate("/topics/yesterday");
-          break;
-        case "Diese Woche":
-          navigate("/topics/this-week");
-          break;
-        case "Diesen Monat":
-          navigate("/topics/this-month");
-          break;
-      }
-    }
+    // No longer navigating to different pages
   };
 
   return (
