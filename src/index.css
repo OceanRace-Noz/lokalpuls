@@ -100,6 +100,10 @@
     @apply bg-background text-foreground font-dongle;
   }
 
+  main {
+    @apply pb-12; /* Add bottom padding to main content */
+  }
+
   /* Question category colors */
   .category-freizeit {
     @apply bg-[#1F45CD];

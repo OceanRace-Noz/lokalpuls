@@ -33,34 +33,38 @@ const TopicItem: React.FC<TopicItemProps> = ({ topic, index, isLast }) => {
       <div className="flex flex-col w-full">
         <Link 
           to={getTopicRoute(topic.categoryType, topic.id)}
-          className="flex min-h-[18px] w-full items-center gap-[40px_100px] justify-between hover:opacity-80 transition-opacity cursor-pointer hover-scale"
+          className="flex min-h-[18px] w-full items-center justify-between hover:opacity-80 transition-opacity cursor-pointer hover-scale"
         >
-          <div className="self-stretch flex items-center gap-[5px] my-auto">
+          <div className="flex items-center gap-2">
             <div
               style={{ color: topic.color }}
-              className="text-base self-stretch my-auto"
+              className="text-base"
             >
               {topic.number}
             </div>
             <div
               style={{ color: topic.color }}
-              className="text-2xl self-stretch my-auto"
+              className="text-2xl"
             >
               {topic.title}
             </div>
           </div>
-          <img
-            src={topic.icon}
-            alt="Icon"
-            className="aspect-[1] object-contain w-[18px] self-stretch shrink-0 my-auto"
-          />
+          <div className="flex-shrink-0">
+            <img
+              src={topic.icon}
+              alt="Icon"
+              className="w-[18px] h-[18px] object-contain"
+            />
+          </div>
         </Link>
       </div>
-      <img
-        src="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/381176adfb1801e11719cdb964993289012780f23fdfac0e5f401de76dac903f?placeholderIfAbsent=true"
-        alt="Divider"
-        className="aspect-[333.33] object-contain w-full mt-3"
-      />
+      <div className="w-full flex justify-start mt-3">
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/381176adfb1801e11719cdb964993289012780f23fdfac0e5f401de76dac903f?placeholderIfAbsent=true"
+          alt="Divider"
+          className="object-contain w-full max-w-[335px]"
+        />
+      </div>
       {!isLast && <div className="mt-3"></div>}
     </>
   );

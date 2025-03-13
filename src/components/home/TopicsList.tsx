@@ -408,7 +408,6 @@ const TopicsList: React.FC<TopicsListProps> = ({ selectedCity = "Melle" }) => {
   const handleFilterChange = (filter: TimeFilterOption) => {
     setSelectedFilter(filter);
     updateTopicsForCity(selectedCity, filter);
-    // Reset expanded topic when changing filters
     setExpandedTopic(null);
   };
 
@@ -418,7 +417,6 @@ const TopicsList: React.FC<TopicsListProps> = ({ selectedCity = "Melle" }) => {
     } else {
       setExpandedTopic(topicId);
       
-      // Show toast for topics without answers data
       const topic = currentTopics.find(t => t.id === topicId);
       if (!topic?.answers) {
         toast({
