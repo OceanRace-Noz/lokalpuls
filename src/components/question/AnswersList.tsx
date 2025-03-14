@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ThumbsUp, Trash2 } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 
@@ -26,6 +26,11 @@ const AnswersList: React.FC<AnswersListProps> = ({
 }) => {
   const [answers, setAnswers] = useState(initialAnswers);
   const [likedAnswers, setLikedAnswers] = useState<Record<string, boolean>>({});
+
+  // Update answers state when initialAnswers changes
+  useEffect(() => {
+    setAnswers(initialAnswers);
+  }, [initialAnswers]);
 
   const handleLike = (answerId: number | undefined) => {
     if (!answerId) return;

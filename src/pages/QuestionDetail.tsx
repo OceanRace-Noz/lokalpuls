@@ -74,7 +74,9 @@ const QuestionDetail: React.FC = () => {
           date: "Gerade eben"
         };
         
-        setAnswers(prevAnswers => [newAnswer, ...prevAnswers]);
+        // Update answers state with the new answer at the beginning
+        const updatedAnswers = [newAnswer, ...answers];
+        setAnswers(updatedAnswers);
         setAnswerText('');
         
         toast({
