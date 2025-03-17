@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { toast } from "@/components/ui/use-toast";
 import { Topic, TimeFilterOption } from "@/types/topic";
@@ -447,7 +448,7 @@ const TopicsList: React.FC<TopicsListProps> = ({ selectedCity = "Melle" }) => {
             />
           ))}
         </div>
-        <div className="text-[rgba(219,219,219,1)] text-lg text-left mt-[5px] cursor-pointer hover:underline transition-all duration-200">
+        <div className="text-[rgba(219,219,219,1)] text-lg text-center mt-[5px] cursor-pointer hover:underline transition-all duration-200">
           Alle ansehen
         </div>
       </div>
