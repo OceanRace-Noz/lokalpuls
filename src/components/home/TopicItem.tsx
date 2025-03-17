@@ -30,7 +30,7 @@ const TopicItem: React.FC<TopicItemProps> = ({ topic, index, isLast }) => {
 
   return (
     <>
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full max-w-md">
         <Link 
           to={getTopicRoute(topic.categoryType, topic.id)}
           className="flex min-h-[18px] w-full items-center justify-between hover:opacity-80 transition-opacity cursor-pointer hover-scale"
@@ -58,7 +58,7 @@ const TopicItem: React.FC<TopicItemProps> = ({ topic, index, isLast }) => {
           </div>
         </Link>
       </div>
-      <div className="w-full flex justify-start mt-3">
+      <div className="w-full flex justify-center mt-3">
         <img
           src="https://cdn.builder.io/api/v1/image/assets/cde1fe42716a4856b5a284e389d2dda0/381176adfb1801e11719cdb964993289012780f23fdfac0e5f401de76dac903f?placeholderIfAbsent=true"
           alt="Divider"

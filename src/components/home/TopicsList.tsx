@@ -438,7 +438,7 @@ const TopicsList: React.FC<TopicsListProps> = ({ selectedCity = "Melle" }) => {
         />
       </div>
       <div className="w-full font-normal mt-[30px]">
-        <div className="w-full">
+        <div className="w-full flex flex-col items-center">
           {currentTopics.map((topic, index) => (
             <TopicItem 
               key={topic.id} 
