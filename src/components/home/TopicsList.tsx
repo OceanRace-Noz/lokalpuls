@@ -430,12 +430,14 @@ const TopicsList: React.FC<TopicsListProps> = ({ selectedCity = "Melle" }) => {
 
   return (
     <div className="container mx-auto max-w-4xl px-4">
-      <div className="w-full flex justify-start">
-        <TimeFilter 
-          selectedFilter={selectedFilter} 
-          onFilterChange={handleFilterChange}
-          city={selectedCity}
-        />
+      <div className="w-full flex justify-center">
+        <div className="w-full max-w-md">
+          <TimeFilter 
+            selectedFilter={selectedFilter} 
+            onFilterChange={handleFilterChange}
+            city={selectedCity}
+          />
+        </div>
       </div>
       <div className="w-full font-normal mt-[30px]">
         <div className="w-full flex flex-col items-center">

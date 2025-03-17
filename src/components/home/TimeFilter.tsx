@@ -19,8 +19,8 @@ const TimeFilter: React.FC<TimeFilterProps> = ({
   };
 
   return (
-    <div className="space-y-3 flex flex-col items-center w-full max-w-md">
-      <div className="text-[rgba(219,219,219,1)] text-base font-medium font-league-spartan">
+    <div className="space-y-3 flex flex-col w-full">
+      <div className="text-[rgba(219,219,219,1)] text-base font-medium font-league-spartan text-center">
         Das beschäftigt {city}
       </div>
       <div className="flex w-full items-center justify-center gap-[7px] text-sm text-[rgba(83,83,83,1)] font-normal leading-none my-0 bg-transparent overflow-x-auto pb-2">
