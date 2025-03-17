@@ -19,7 +19,7 @@ const TimeFilter: React.FC<TimeFilterProps> = ({
   };
 
   return (
-    <div className="space-y-3 flex flex-col items-center">
+    <div className="space-y-3 flex flex-col items-center w-full max-w-md">
       <div className="text-[rgba(219,219,219,1)] text-base font-medium font-league-spartan">
         Das beschäftigt {city}
       </div>

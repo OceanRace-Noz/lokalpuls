@@ -430,7 +430,7 @@ const TopicsList: React.FC<TopicsListProps> = ({ selectedCity = "Melle" }) => {
 
   return (
     <div className="container mx-auto max-w-4xl px-4">
-      <div className="w-full">
+      <div className="w-full flex justify-start">
         <TimeFilter 
           selectedFilter={selectedFilter} 
           onFilterChange={handleFilterChange}
